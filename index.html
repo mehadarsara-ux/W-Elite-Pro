@@ -54,7 +54,7 @@
         }
 
         /* ==========================================
-           2. NEW HEADER DESIGN (DIFFERENT BAR MENU COLORS)
+           2. ENHANCED FLOATING TRANSPARENT MENU BAR
            ========================================== */
         header {
             position: fixed;
@@ -62,11 +62,18 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            /* Changed to a clean, high-contrast premium off-white/light-slate bar */
+            /* Starts completely transparent to blend with the navy first page */
+            background-color: transparent;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--bezier-smooth);
+        }
+
+        /* When scrolling down, JavaScript triggers this clean premium look */
+        header.scrolled {
             background-color: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 31, 63, 0.08);
-            transition: var(--bezier-smooth);
+            box-shadow: 0 4px 30px rgba(0, 31, 63, 0.03);
         }
 
         .nav-container {
@@ -75,7 +82,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 60px;
+            padding: 22px 60px;
+            transition: var(--bezier-smooth);
+        }
+
+        header.scrolled .nav-container {
+            padding: 16px 60px; /* Becomes sleeker on scroll */
         }
 
         .logo {
@@ -83,8 +95,13 @@
             font-size: 0.95rem;
             font-weight: 700;
             letter-spacing: 4px;
-            color: var(--brand-navy);
+            color: #ffffff; /* Starts white on dark background */
             text-decoration: none;
+            transition: var(--bezier-smooth);
+        }
+
+        header.scrolled .logo {
+            color: var(--brand-navy); /* Turns navy on white background */
         }
 
         .nav-center-menu {
@@ -93,7 +110,7 @@
         }
 
         .nav-center-menu a {
-            color: rgba(0, 31, 63, 0.7);
+            color: rgba(255, 255, 255, 0.75); /* Starts white on dark background */
             text-decoration: none;
             font-size: 0.75rem;
             font-weight: 600;
@@ -104,8 +121,12 @@
             padding: 4px 0;
         }
 
+        header.scrolled .nav-center-menu a {
+            color: rgba(0, 31, 63, 0.7); /* Turns muted navy on scroll */
+        }
+
         .nav-center-menu a:hover {
-            color: var(--brand-navy);
+            color: var(--brand-gold) !important;
         }
         
         .nav-center-menu a::after {
@@ -129,25 +150,35 @@
             gap: 25px;
         }
 
-        /* Updated Action Button: Apply Now */
+        /* Action Button: Apply Now */
         .nav-apply-btn {
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 600;
-            color: #ffffff;
-            background-color: var(--brand-navy);
+            color: var(--brand-navy);
+            background-color: var(--brand-gold);
             text-decoration: none;
             padding: 12px 28px;
             border-radius: 0px;
             transition: var(--bezier-smooth);
+        }
+
+        header.scrolled .nav-apply-btn {
+            color: #ffffff;
+            background-color: var(--brand-navy);
             box-shadow: 0 4px 15px rgba(0, 31, 63, 0.1);
         }
 
         .nav-apply-btn:hover {
-            background-color: var(--brand-gold);
-            color: var(--brand-navy);
+            background-color: #ffffff !important;
+            color: var(--brand-navy) !important;
             transform: translateY(-2px);
+        }
+
+        header.scrolled .nav-apply-btn:hover {
+            background-color: var(--brand-gold) !important;
+            color: var(--brand-navy) !important;
         }
 
         .lang-switcher {
@@ -156,20 +187,33 @@
             gap: 6px;
             font-size: 0.75rem;
             letter-spacing: 1px;
-            border-left: 1px solid rgba(0, 31, 63, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
             padding-left: 20px;
+            transition: var(--bezier-smooth);
+        }
+
+        header.scrolled .lang-switcher {
+            border-left-color: rgba(0, 31, 63, 0.15);
         }
 
         .lang-btn {
             background: none;
             border: none;
-            color: rgba(0, 31, 63, 0.4);
+            color: rgba(255, 255, 255, 0.4);
             cursor: pointer;
             font-weight: 600;
             transition: var(--bezier-smooth);
         }
 
+        header.scrolled .lang-btn {
+            color: rgba(0, 31, 63, 0.4);
+        }
+
         .lang-btn.active {
+            color: var(--brand-gold);
+        }
+
+        header.scrolled .lang-btn.active {
             color: var(--brand-navy);
             font-weight: 700;
         }
@@ -544,8 +588,8 @@
 </head>
 <body>
 
-    <!-- Upper Institutional Menu Layer (Updated Colors) -->
-    <header>
+    <!-- Upper Institutional Menu Layer (Enhanced Floating Mechanism) -->
+    <header id="main-header">
         <div class="nav-container">
             <a href="#" class="logo">W-ELITE PRO</a>
             
@@ -561,7 +605,7 @@
                 
                 <div class="lang-switcher">
                     <button class="lang-btn active" onclick="changeLanguageSystem('en')">EN</button>
-                    <span style="color:rgba(0, 31, 63, 0.15)">|</span>
+                    <span id="lang-divider" style="color:rgba(255,255,255,0.2)">|</span>
                     <button class="lang-btn" onclick="changeLanguageSystem('fr')">FR</button>
                 </div>
             </div>
@@ -703,8 +747,22 @@
 
     <!-- ==========================================
        8. ENGINE STRATIFICATION LOGIC
-       ========================================== */ -->
+       ========================================== -->
     <script>
+        // Scroll Management Effect for the Navigation Menu Colors
+        window.addEventListener('scroll', () => {
+            const headerElement = document.getElementById('main-header');
+            const dividerElement = document.getElementById('lang-divider');
+            
+            if (window.scrollY > 50) {
+                headerElement.classList.add('scrolled');
+                if(dividerElement) dividerElement.style.color = 'rgba(0, 31, 63, 0.15)';
+            } else {
+                headerElement.classList.remove('scrolled');
+                if(dividerElement) dividerElement.style.color = 'rgba(255, 255, 255, 0.2)';
+            }
+        });
+
         const lexicalMatrix = {
             en: [
                 "university teachers.",
