@@ -23,10 +23,6 @@
             --text-muted: #5a6578;      
             --border-line: rgba(0, 31, 63, 0.08);
             --bezier-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            
-            /* Enhanced Grid Specific Colors */
-            --card-navy-bg: #002d5a;
-            --card-gold-tint: #fbf8ef;
         }
 
         * {
@@ -62,13 +58,11 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            /* Starts completely transparent to blend with the navy first page */
             background-color: transparent;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transition: var(--bezier-smooth);
         }
 
-        /* When scrolling down, JavaScript triggers this clean premium look */
         header.scrolled {
             background-color: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(10px);
@@ -87,7 +81,7 @@
         }
 
         header.scrolled .nav-container {
-            padding: 16px 60px; /* Becomes sleeker on scroll */
+            padding: 16px 60px;
         }
 
         .logo {
@@ -95,13 +89,13 @@
             font-size: 0.95rem;
             font-weight: 700;
             letter-spacing: 4px;
-            color: #ffffff; /* Starts white on dark background */
+            color: #ffffff;
             text-decoration: none;
             transition: var(--bezier-smooth);
         }
 
         header.scrolled .logo {
-            color: var(--brand-navy); /* Turns navy on white background */
+            color: var(--brand-navy);
         }
 
         .nav-center-menu {
@@ -110,7 +104,7 @@
         }
 
         .nav-center-menu a {
-            color: rgba(255, 255, 255, 0.75); /* Starts white on dark background */
+            color: rgba(255, 255, 255, 0.75);
             text-decoration: none;
             font-size: 0.75rem;
             font-weight: 600;
@@ -122,7 +116,7 @@
         }
 
         header.scrolled .nav-center-menu a {
-            color: rgba(0, 31, 63, 0.7); /* Turns muted navy on scroll */
+            color: rgba(0, 31, 63, 0.7);
         }
 
         .nav-center-menu a:hover {
@@ -150,7 +144,6 @@
             gap: 25px;
         }
 
-        /* Action Button: Apply Now */
         .nav-apply-btn {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -219,7 +212,7 @@
         }
 
         /* ==========================================
-           3. HERO AREA (DEEP NAVY GROUNDING)
+           3. HERO AREA
            ========================================== */
         #first-page {
             background-color: var(--brand-navy);
@@ -273,7 +266,7 @@
         }
 
         /* ==========================================
-           4. W-ELITE OFFERINGS SECTION (PREMIUM INTERLOCKING GRIDS)
+           4. W-ELITE OFFERINGS SECTION
            ========================================== */
         #offerings-section {
             background-color: var(--bg-ultra-light);
@@ -308,11 +301,11 @@
             font-weight: 400;
         }
 
-        /* Asymmetric Premium Layout System */
         .premium-structural-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 35px;
+            align-items: start;
         }
 
         .pathway-card {
@@ -327,9 +320,9 @@
             transition: var(--bezier-smooth);
             position: relative;
             overflow: hidden;
+            min-height: 520px;
         }
 
-        /* Premium Centerpiece Accent Card (W-Ultra Highlighted Color Design) */
         .pathway-card.featured-card {
             background-color: var(--brand-navy);
             color: #ffffff;
@@ -348,7 +341,7 @@
         }
 
         .card-top-content {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .pathway-header {
@@ -356,14 +349,6 @@
             align-items: baseline;
             gap: 15px;
             margin-bottom: 10px;
-        }
-
-        .pathway-index {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            color: var(--brand-gold);
-            font-style: italic;
-            font-weight: 600;
         }
 
         .pathway-title {
@@ -383,7 +368,7 @@
             letter-spacing: 2px;
             color: var(--brand-gold);
             font-weight: 600;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             display: block;
         }
 
@@ -391,12 +376,115 @@
             font-size: 1.05rem;
             color: var(--text-muted);
             font-weight: 300;
-            line-height: 1.8;
+            line-height: 1.7;
             text-align: left;
         }
 
         .featured-card .pathway-body {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Interactive Expandable System Details */
+        .learn-more-trigger {
+            display: inline-block;
+            background: none;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--brand-gold);
+            cursor: pointer;
+            padding: 0;
+            margin-top: 20px;
+            text-align: left;
+            transition: var(--bezier-smooth);
+        }
+
+        .learn-more-trigger:hover {
+            letter-spacing: 3px;
+        }
+
+        .featured-card .learn-more-trigger {
+            color: #ffffff;
+        }
+
+        .featured-card .learn-more-trigger:hover {
+            color: var(--brand-gold);
+        }
+
+        .expanded-details-drawer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .expanded-details-drawer.open {
+            max-height: 400px;
+        }
+
+        .drawer-inner-content {
+            padding-top: 25px;
+            margin-top: 25px;
+            border-top: 1px solid var(--border-line);
+        }
+
+        .featured-card .drawer-inner-content {
+            border-top-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .drawer-inner-content h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--brand-navy);
+            margin-bottom: 15px;
+        }
+
+        .featured-card .drawer-inner-content h4 {
+            color: var(--brand-gold);
+        }
+
+        .details-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .details-list li {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .featured-card .details-list li {
             color: rgba(255, 255, 255, 0.75);
+        }
+
+        .details-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--brand-gold);
+        }
+
+        .price-display-box {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--brand-navy);
+            letter-spacing: -0.5px;
+            font-family: 'Inter', sans-serif;
+            margin-top: auto;
+            padding-top: 15px;
+        }
+
+        .featured-card .price-display-box {
+            color: var(--brand-gold);
         }
 
         .card-bottom-accent {
@@ -407,7 +495,7 @@
         }
 
         /* ==========================================
-           5. SUCCESS STORIES & ACADEMIC ENDORSEMENT SECTION
+           5. SUCCESS STORIES SECTION
            ========================================== */
         #success-stories-section {
             background-color: var(--bg-pure-white);
@@ -430,7 +518,6 @@
             text-align: left;
         }
 
-        /* Master Academic Endorsement Unit Placed First */
         .endorsement-block {
             padding-bottom: 60px;
             margin-bottom: 60px;
@@ -466,7 +553,6 @@
             display: inline-block;
         }
 
-        /* Future Real Success Stories Anchor Array Container */
         .dynamic-stories-container {
             display: flex;
             flex-direction: column;
@@ -588,19 +674,17 @@
 </head>
 <body>
 
-    <!-- Upper Institutional Menu Layer (Enhanced Floating Mechanism) -->
+    <!-- Upper Institutional Menu Layer -->
     <header id="main-header">
         <div class="nav-container">
             <a href="#" class="logo">W-ELITE PRO</a>
             
-            <!-- Context Ordered Navigation Links -->
             <nav class="nav-center-menu">
                 <a href="#offerings-section" class="lang-node" data-en="W-Elite Offerings" data-fr="Offres W-Elite">W-Elite Offerings</a>
                 <a href="#success-stories-section" class="lang-node" data-en="Success Stories" data-fr="Témoignages">Success Stories</a>
             </nav>
 
             <div class="nav-right-cluster">
-                <!-- Action target adjusted to open in another page via target="_blank" -->
                 <a href="https://w-elitepro.com/apply/" target="_blank" class="nav-apply-btn lang-node" data-en="Apply Now" data-fr="Postuler Maintenant">Apply Now</a>
                 
                 <div class="lang-switcher">
@@ -612,7 +696,7 @@
         </div>
     </header>
 
-    <!-- FIRST PAGE: Deep Navy Grounding & Strict Left-Aligned Structural Layout -->
+    <!-- FIRST PAGE -->
     <section id="first-page">
         <div class="hero-left-layout">
             <div class="typewriter-container">
@@ -634,7 +718,7 @@
         </div>
     </section>
 
-    <!-- SECOND PAGE: W-ELITE OFFERINGS (Asymmetric Premium Grid & Restyled Structural Cards) -->
+    <!-- SECOND PAGE: W-ELITE OFFERINGS -->
     <section id="offerings-section">
         <div class="offerings-wrapper">
             <div class="offerings-top-bar">
@@ -647,33 +731,61 @@
                 <div class="pathway-card">
                     <div class="card-top-content">
                         <div class="pathway-header">
-                            <span class="pathway-index">I</span>
                             <h3 class="pathway-title">W-Core</h3>
                         </div>
                         <span class="pathway-tag lang-node" data-en="General & Fluency" data-fr="Général & Fluidité">General & Fluency</span>
                         <p class="pathway-body lang-node"
-                           data-en="Built for individuals demanding complete linguistic autonomy. This framework systematically strips away hesitation, solidifying high-level conversational structures, narrative confidence, and seamless communication for global mobility."
-                           data-fr="Conçu pour les personnes exigeant une autonomie linguistique complète. Ce cadre élimine systématiquement l'hésitation, solidifiant les structures de conversation de haut niveau, la confiance narrative et une communication fluide pour la mobilité internationale.">
-                            Built for individuals demanding complete linguistic autonomy. This framework systematically strips away hesitation, solidifying high-level conversational structures, narrative confidence, and seamless communication for global mobility.
+                           data-en="For anyone looking to speak and write in English for personal and professional purposes. We focus on conversation, fluency and vocabulary enrichment."
+                           data-fr="Pour tous ceux qui souhaitent parler et écrire en anglais à des fins personnelles et professionnelles. Nous nous concentrons sur la conversation, la fluidité et l'enrichissement du vocabulaire.">
+                            For anyone looking to speak and write in English for personal and professional purposes. We focus on conversation, fluency and vocabulary enrichment.
                         </p>
+                        
+                        <button class="learn-more-trigger lang-node" onclick="toggleDetailsDrawer('drawer-core')" data-en="Learn More" data-fr="En savoir plus">Learn More</button>
+                        
+                        <div id="drawer-core" class="expanded-details-drawer">
+                            <div class="drawer-inner-content">
+                                <h4 class="lang-node" data-en="What We Offer:" data-fr="Ce Que Nous Offrons :">What We Offer:</h4>
+                                <ul class="details-list">
+                                    <li class="lang-node" data-en="02 sessions/week" data-fr="02 séances / semaine">02 sessions/week</li>
+                                    <li class="lang-node" data-en="Small groups ONLY: 6 learners maximum" data-fr="Groupes réduits UNIQUEMENT : 6 apprenants maximum">Small groups ONLY: 6 learners maximum</li>
+                                    <li class="lang-node" data-en="Highly interactive learning materials" data-fr="Supports d'apprentissage hautement interactifs">Highly interactive learning materials</li>
+                                    <li class="lang-node" data-en="24/7 Access to your dashboard to practice" data-fr="Accès 24/7 à votre tableau de bord pour pratiquer">24/7 Access to your dashboard to practice</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                    <div class="price-display-box">7500 DZD/month</div>
                     <div class="card-bottom-accent"></div>
                 </div>
 
-                <!-- Pathway Card: W-Ultra (High Contrast Featured Premium Variant) -->
+                <!-- Pathway Card: W-Ultra (IELTS Preparation - Featured Highlight Card) -->
                 <div class="pathway-card featured-card">
                     <div class="card-top-content">
                         <div class="pathway-header">
-                            <span class="pathway-index">II</span>
                             <h3 class="pathway-title">W-Ultra</h3>
                         </div>
-                        <span class="pathway-tag lang-node" data-en="IELTS Mastery (Band 7+)" data-fr="Maîtrise IELTS (Band 7+)">IELTS Mastery (Band 7+)</span>
+                        <span class="pathway-tag lang-node" data-en="IELTS Preparation" data-fr="Préparation IELTS">IELTS Preparation</span>
                         <p class="pathway-body lang-node"
-                           data-en="A highly targeted, rigorous diagnostic framework designed for elite tier candidates. This path delivers strict, step-by-step test strategy execution to target high-band scores required for international university admissions and scholarship pathways."
-                           data-fr="Un cadre de diagnostic rigoureux et hautement ciblé, conçu pour les candidats d'élite. Ce parcours applique une stratégie d'examen stricte et progressive pour atteindre les scores les plus élevés requis pour les admissions universitaires internationales et les bourses d'études.">
-                            A highly targeted, rigorous diagnostic framework designed for elite tier candidates. This path delivers strict, step-by-step test strategy execution to target high-band scores required for international university admissions and scholarship pathways.
+                           data-en="An intensive IELTS preparation for Algerians sitting for Academic or General test. Our training strictly follows IELTS requirements (Format, skills, and method). This preparation delivers step-by-step test strategy to target high-band scores required for your international university/work admissions."
+                           data-fr="Une préparation intensive à l'IELTS pour les Algériens passant le test Académique ou Général. Notre formation suit strictement les exigences de l'IELTS (Format, compétences et méthode). Cette préparation fournit une stratégie d'examen étape par étape pour viser les scores élevés requis pour vos admissions universitaires ou professionnelles internationales.">
+                            An intensive IELTS preparation for Algerians sitting for Academic or General test. Our training strictly follows IELTS requirements (Format, skills, and method). This preparation delivers step-by-step test strategy to target high-band scores required for your international university/work admissions.
                         </p>
+                        
+                        <button class="learn-more-trigger lang-node" onclick="toggleDetailsDrawer('drawer-ultra')" data-en="Learn More" data-fr="En savoir plus">Learn More</button>
+                        
+                        <div id="drawer-ultra" class="expanded-details-drawer">
+                            <div class="drawer-inner-content">
+                                <h4 class="lang-node" data-en="What We Offer:" data-fr="Ce Que Nous Offrons :">What We Offer:</h4>
+                                <ul class="details-list">
+                                    <li class="lang-node" data-en="Small groups ONLY: 3-8 per cohort" data-fr="Groupes réduits UNIQUEMENT : 3-8 par cohorte">Small groups ONLY: 3-8 per cohort</li>
+                                    <li class="lang-node" data-en="A 15-hour preparation" data-fr="Une préparation de 15 heures">A 15-hour preparation</li>
+                                    <li class="lang-node" data-en="Access to your dashboard to practice more" data-fr="Accès à votre tableau de bord pour pratiquer davantage">Access to your dashboard to practice more</li>
+                                    <li class="lang-node" data-en="Final mock test + personalized feedback & corrections" data-fr="Examen blanc final + commentaires & corrections personnalisés">Final mock test + personalized feedback & corrections</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
+                    <div class="price-display-box">18500 DZD</div>
                     <div class="card-bottom-accent" style="background-color: var(--brand-gold);"></div>
                 </div>
 
@@ -697,7 +809,7 @@
         </div>
     </section>
 
-    <!-- THIRD PAGE: SUCCESS STORIES (Academic Endorsement Placed First) -->
+    <!-- THIRD PAGE: SUCCESS STORIES -->
     <section id="success-stories-section">
         <div class="editorial-left-grid">
             <div class="section-meta-side">
@@ -706,7 +818,6 @@
             </div>
             
             <div class="section-content-side">
-                <!-- Academic Endorsement Unit Rendered First -->
                 <div class="endorsement-block">
                     <p class="quote-text lang-node"
                        data-en='"Whether you are looking to master professional communication skills or gain fluency for academic purposes, the systematic approach and clear, effective teaching style at W-Elite Pro will guide you toward your goals."'
@@ -716,7 +827,6 @@
                     <p class="quote-author">— Prof. F. Benyelles Bedjaoui</p>
                 </div>
 
-                <!-- Real Success Stories Placeholder Array Ready for Ingestion -->
                 <div class="dynamic-stories-container">
                     <div class="placeholder-story-card">
                         <p class="lang-node" 
@@ -731,7 +841,7 @@
         </div>
     </section>
 
-    <!-- FOOTER: Institutional Contact Anchor Area -->
+    <!-- FOOTER -->
     <footer>
         <div class="footer-container">
             <div class="footer-left">
@@ -749,6 +859,14 @@
        8. ENGINE STRATIFICATION LOGIC
        ========================================== -->
     <script>
+        // Interactive Drawer Panel Action Controller
+        function toggleDetailsDrawer(drawerId) {
+            const currentTargetDrawer = document.getElementById(drawerId);
+            if (!currentTargetDrawer) return;
+            
+            currentTargetDrawer.classList.toggle('open');
+        }
+
         // Scroll Management Effect for the Navigation Menu Colors
         window.addEventListener('scroll', () => {
             const headerElement = document.getElementById('main-header');
