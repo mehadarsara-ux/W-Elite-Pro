@@ -50,7 +50,7 @@
         }
 
         /* ==========================================
-           2. ENHANCED FLOATING TRANSPARENT MENU BAR
+           2. FLOATING TRANSPARENT MENU BAR
            ========================================== */
         header {
             position: fixed;
@@ -266,7 +266,7 @@
         }
 
         /* ==========================================
-           4. W-ELITE OFFERINGS SECTION
+           4. W-ELITE OFFERINGS SECTION (FIXED HEIGHT GRID UNIFICATION)
            ========================================== */
         #offerings-section {
             background-color: var(--bg-ultra-light);
@@ -301,32 +301,35 @@
             font-weight: 400;
         }
 
+        /* FLEXBOX EQUAL SPACING ALIGNMENT DRIVER */
         .premium-structural-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch; /* Keeps all cards at the exact same vertical height */
             gap: 35px;
-            align-items: start;
         }
 
+        /* Standardized Card Template & Flex Structuring */
         .pathway-card {
             background-color: var(--bg-pure-white);
             padding: 50px 40px;
             border-radius: 4px;
             box-shadow: 0 10px 40px rgba(0, 31, 63, 0.03);
             border: 1px solid rgba(0, 31, 63, 0.04);
+            
+            flex: 1; /* Makes cards identical wide widths */
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: space-between; /* Securely isolates bottom pricing area */
+            
             transition: var(--bezier-smooth);
             position: relative;
             overflow: hidden;
-            min-height: 400px;
         }
 
         .pathway-card.featured-card {
             background-color: var(--brand-navy);
             color: #ffffff;
-            transform: translateY(-10px);
             box-shadow: 0 20px 50px rgba(0, 31, 63, 0.15);
         }
 
@@ -336,12 +339,12 @@
         }
 
         .pathway-card.featured-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-5px);
             box-shadow: 0 25px 60px rgba(0, 31, 63, 0.25);
         }
 
         .card-top-content {
-            margin-bottom: 10px;
+            flex-grow: 1; /* Absorbs inner flexibility variations to enforce straight pricing lines */
         }
 
         .pathway-header {
@@ -374,17 +377,17 @@
 
         .pathway-body {
             font-size: 1.05rem;
-            color: var(--text-muted);
-            font-weight: 300;
+            color: var(--text-dark);
+            font-weight: 400;
             line-height: 1.7;
             text-align: left;
         }
 
         .featured-card .pathway-body {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        /* Interactive Drawer Panel Design System */
+        /* Interactive Drawer Architecture */
         .learn-more-trigger {
             display: inline-block;
             background: none;
@@ -458,14 +461,14 @@
 
         .details-list li {
             font-size: 0.95rem;
-            font-weight: 300;
-            color: var(--text-muted);
+            font-weight: 400;
+            color: var(--text-dark);
             position: relative;
             padding-left: 20px;
         }
 
         .featured-card .details-list li {
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255, 255, 255, 0.85);
         }
 
         .details-list li::before {
@@ -475,14 +478,19 @@
             color: var(--brand-gold);
         }
 
+        /* STRICT PRICE ALIGNMENT BASELINE LOCK */
+        .card-bottom-row {
+            margin-top: auto; /* Enforces straight absolute bottom alignment line */
+            padding-top: 25px;
+        }
+
         .price-display-box {
             font-size: 1.4rem;
             font-weight: 600;
             color: var(--brand-navy);
             letter-spacing: -0.5px;
             font-family: 'Inter', sans-serif;
-            padding-top: 5px;
-            margin-top: 10px;
+            padding-top: 15px;
             border-top: 1px dashed rgba(0, 31, 63, 0.1);
         }
 
@@ -495,11 +503,11 @@
             width: 40px;
             height: 2px;
             background-color: var(--brand-gold);
-            margin-top: 25px;
+            margin-top: 20px;
         }
 
         /* ==========================================
-           5. SUCCESS STORIES SECTION
+           5. SUCCESS STORIES & PREMIUM AUDIO
            ========================================== */
         #success-stories-section {
             background-color: var(--bg-pure-white);
@@ -524,7 +532,7 @@
 
         .endorsement-block {
             padding-bottom: 60px;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
             border-bottom: 1px solid var(--border-line);
         }
 
@@ -557,32 +565,35 @@
             display: inline-block;
         }
 
-        .dynamic-stories-container {
+        /* Elite Institutional Audio Deck */
+        .audio-testimonial-container {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            gap: 20px;
+            margin-top: 40px;
         }
-        
-        .placeholder-story-card {
+
+        .audio-card-item {
             background-color: var(--bg-ultra-light);
-            padding: 35px;
+            padding: 25px 30px;
             border-left: 3px solid var(--brand-gold);
-            opacity: 0.85;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
         }
 
-        .placeholder-story-card p {
-            font-size: 1.05rem;
-            font-style: italic;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-        }
-
-        .placeholder-story-card span {
+        .audio-card-meta {
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
             color: var(--brand-navy);
+        }
+
+        .audio-card-item audio {
+            width: 100%;
+            max-width: 450px;
+            outline: none;
         }
 
         /* ==========================================
@@ -681,14 +692,8 @@
                 gap: 40px;
             }
             .premium-structural-grid {
-                grid-template-columns: 1fr;
+                flex-direction: column;
                 gap: 30px;
-            }
-            .pathway-card.featured-card {
-                transform: none;
-            }
-            .pathway-card.featured-card:hover {
-                transform: translateY(-5px);
             }
             .nav-center-menu {
                 display: none; 
@@ -789,14 +794,18 @@
                                     <li class="lang-node" data-en="Highly interactive learning materials" data-fr="Supports d'apprentissage hautement interactifs">Highly interactive learning materials</li>
                                     <li class="lang-node" data-en="24/7 Access to your dashboard to practice" data-fr="Accès 24/7 à votre tableau de bord pour pratiquer">24/7 Access to your dashboard to practice</li>
                                 </ul>
-                                <div class="price-display-box">7500 DZD/month</div>
                             </div>
                         </div>
                     </div>
-                    <div class="card-bottom-accent"></div>
+                    
+                    <!-- Bottom row locked together -->
+                    <div class="card-bottom-row">
+                        <div class="price-display-box">7500 DZD<span style="font-size:0.8rem; font-weight:300;">/month</span></div>
+                        <div class="card-bottom-accent"></div>
+                    </div>
                 </div>
 
-                <!-- Pathway Card: W-Ultra (IELTS Preparation - Featured Highlight Card) -->
+                <!-- Pathway Card: W-Ultra -->
                 <div class="pathway-card featured-card">
                     <div class="card-top-content">
                         <div class="pathway-header">
@@ -820,11 +829,15 @@
                                     <li class="lang-node" data-en="Access to your dashboard to practice more" data-fr="Accès à votre tableau de bord pour pratiquer davantage">Access to your dashboard to practice more</li>
                                     <li class="lang-node" data-en="Final mock test + personalized feedback & corrections" data-fr="Examen blanc final + commentaires & corrections personnalisés">Final mock test + personalized feedback & corrections</li>
                                 </ul>
-                                <div class="price-display-box">18500 DZD</div>
                             </div>
                         </div>
                     </div>
-                    <div class="card-bottom-accent" style="background-color: var(--brand-gold);"></div>
+                    
+                    <!-- Bottom row locked together -->
+                    <div class="card-bottom-row">
+                        <div class="price-display-box">18500 DZD</div>
+                        <div class="card-bottom-accent" style="background-color: var(--brand-gold);"></div>
+                    </div>
                 </div>
 
                 <!-- Pathway Card: W-PACE -->
@@ -851,11 +864,15 @@
                                     <li class="lang-node" data-en="Presentations & email writing" data-fr="Présentations & rédaction d'e-mails">Presentations & email writing</li>
                                     <li class="lang-node" data-en="Access to our alumni network" data-fr="Accès à notre réseau d'alumni">Access to our alumni network</li>
                                 </ul>
-                                <div class="price-display-box">12500 DZD</div>
                             </div>
                         </div>
                     </div>
-                    <div class="card-bottom-accent"></div>
+                    
+                    <!-- Bottom row locked together -->
+                    <div class="card-bottom-row">
+                        <div class="price-display-box">12500 DZD</div>
+                        <div class="card-bottom-accent"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -870,23 +887,26 @@
             </div>
             
             <div class="section-content-side">
+                <!-- Academic Endorsement Module -->
                 <div class="endorsement-block">
+                    <span class="section-label style="font-size: 0.65rem; color: var(--text-muted); margin-bottom: 10px;" lang-node" data-en="Academic Endorsement" data-fr="Approbation Académique">Academic Endorsement</span>
                     <p class="quote-text lang-node"
                        data-en='"Whether you are looking to master professional communication skills or gain fluency for academic purposes, the systematic approach and clear, effective teaching style at W-Elite Pro will guide you toward your goals."'
                        data-fr='"Que vous cherchiez à maîtriser les compétences de communication professionnelle ou à acquérir une aisance académique, l’approche systématique et le style d’enseignement efficace de W-Elite Pro vous guideront vers vos objectifs."'>
                         "Whether you are looking to master professional communication skills or gain fluency for academic purposes, the systematic approach and clear, effective teaching style at W-Elite Pro will guide you toward your goals."
                     </p>
-                    <p class="quote-author">— Prof. F. Benyelles Bedjaoui</p>
+                    <p class="quote-author">— Prof. F. Benyelles Bedjaoui (PhD Thesis Supervisor)</p>
                 </div>
 
-                <div class="dynamic-stories-container">
-                    <div class="placeholder-story-card">
-                        <p class="lang-node" 
-                           data-en="[Real success story text will be placed here. You can easily duplicate this structural block to expand your testimonial list.]" 
-                           data-fr="[Le texte des futurs témoignages de réussite sera inséré ici. Vous pourrez dupliquer ce bloc pour enrichir la liste.]">
-                            [Real success story text will be placed here. You can easily duplicate this structural block to expand your testimonial list.]
-                        </p>
-                        <span class="lang-node" data-en="Candidate Track Record" data-fr="Parcours Candidat">Candidate Track Record</span>
+                <!-- Premium Audio Success Track Node Area -->
+                <div class="audio-testimonial-container">
+                    <div class="audio-card-item">
+                        <span class="audio-card-meta lang-node" data-en="Student Success Story: IELTS Academic Achievement" data-fr="Témoignage Étudiant : Succès IELTS Académique">Student Success Story: IELTS Academic Achievement</span>
+                        <!-- Replace 'audio/student-audio-track.mp3' with your specific audio destination link -->
+                        <audio controls>
+                            <source src="audio/student-audio-track.mp3" type="audio/mpeg">
+                            Your browser does not support the audio playback engine.
+                        </audio>
                     </div>
                 </div>
             </div>
@@ -907,9 +927,8 @@
         </div>
     </footer>
 
-    <!-- DYNAMIC WHATSAPP INTERACTIVE TRIGGER 
-         Replace YOUR_PHONE_NUMBER below with your actual digits including international country code (e.g., 213XXXXXXXXX) -->
-    <a href="https://wa.me/+213672334552" target="_blank" class="whatsapp-floating-trigger" aria-label="Chat via WhatsApp">
+    <!-- DYNAMIC WHATSAPP INTERACTIVE TRIGGER -->
+    <a href="https://wa.me/YOUR_PHONE_NUMBER" target="_blank" class="whatsapp-floating-trigger" aria-label="Chat via WhatsApp">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.4 0 12.008 0c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 12.002-11.948 12.002-1.998-.001-3.951-.5-5.688-1.448L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.742.002-2.602-1.005-5.05-2.839-6.89C16.605 2.132 14.162 1.11 11.57 1.111c-5.437 0-9.863 4.37-9.867 9.742-.001 1.705.465 3.369 1.347 4.804l-.369 1.348-.972 3.548 3.644-.954.294-.143zM17.141 14.12c-.3-.15-1.774-.875-2.049-.975-.276-.1-.476-.15-.676.15-.2.3-.775.975-.95 1.174-.175.2-.35.226-.65.075-1.206-.603-2.016-1.062-2.812-2.427-.21-.362.21-.336.604-1.127.065-.13.033-.245-.016-.345-.05-.1-.476-1.149-.652-1.573-.171-.413-.344-.357-.476-.364-.122-.006-.264-.007-.405-.007-.141 0-.371.053-.566.265-.195.212-.746.728-.746 1.777 0 1.048.762 2.062.869 2.208.106.146 1.5 2.293 3.636 3.214.508.219.904.35 1.214.449.51.162.974.139 1.341.084.409-.061 1.774-.726 2.024-1.427.25-.7.25-1.3.175-1.427-.075-.127-.275-.201-.575-.351z"/>
         </svg>
@@ -926,7 +945,6 @@
             
             currentTargetDrawer.classList.toggle('open');
             
-            // Adjust current triggering button label text subtly based on current state
             const associatedTriggerBtn = currentTargetDrawer.previousElementSibling;
             if (associatedTriggerBtn && associatedTriggerBtn.classList.contains('learn-more-trigger')) {
                 const currentSelectedLanguageBtn = document.querySelector('.lang-btn.active');
@@ -1016,7 +1034,6 @@
         function changeLanguageSystem(targetLanguage) {
             const matchingNodes = document.querySelectorAll('.lang-node');
             matchingNodes.forEach(node => {
-                // If drawer text is modified by user actions, maintain logical state representation instead of overriding blindly
                 if (node.classList.contains('learn-more-trigger')) {
                     const dynamicDrawer = node.nextElementSibling;
                     if (dynamicDrawer && dynamicDrawer.classList.contains('expanded-details-drawer') && dynamicDrawer.classList.contains('open')) {
