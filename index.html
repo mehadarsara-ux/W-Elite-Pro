@@ -641,7 +641,39 @@
         }
 
         /* ==========================================
-           7. RESPONSIVE REFINEMENT CORRECTIONS
+           7. PREMIUM WHATSAPP FLOATING BUTTON
+           ========================================== */
+        .whatsapp-floating-trigger {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 2000;
+            width: 56px;
+            height: 56px;
+            background-color: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .whatsapp-floating-trigger:hover {
+            transform: scale(1.08) translateY(-2px);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.45);
+        }
+
+        .whatsapp-floating-trigger svg {
+            width: 28px;
+            height: 28px;
+            fill: #ffffff;
+        }
+
+        /* ==========================================
+           8. RESPONSIVE REFINEMENT CORRECTIONS
            ========================================== */
         @media (max-width: 1100px) {
             .editorial-left-grid {
@@ -673,6 +705,8 @@
             .pathway-title { font-size: 1.7rem; }
             .footer-container { flex-direction: column; align-items: flex-start; gap: 25px; }
             .footer-right { text-align: left; }
+            .whatsapp-floating-trigger { bottom: 25px; right: 25px; width: 48px; height: 48px; }
+            .whatsapp-floating-trigger svg { width: 24px; height: 24px; }
         }
     </style>
 </head>
@@ -797,15 +831,29 @@
                 <div class="pathway-card">
                     <div class="card-top-content">
                         <div class="pathway-header">
-                            <span class="pathway-index">III</span>
                             <h3 class="pathway-title">W-PACE</h3>
                         </div>
-                        <span class="pathway-tag lang-node" data-en="Executive & Academic" data-fr="Exécutif & Académique">Executive & Academic</span>
+                        <span class="pathway-tag lang-node" data-en="Professional & Academic Communication" data-fr="Communication Professionnelle & Académique">Professional & Academic Communication</span>
                         <p class="pathway-body lang-node"
-                           data-en="An executive communication incubator designed specifically for educators, scholars, and business professionals. It focuses entirely on rhetorical authority, advanced presentation defense, clear academic authorship, and high-stakes workplace leadership."
-                           data-fr="Un incubateur de communication executive conçu spécifiquement pour les enseignants, chercheurs et professionnels. Il se concentre entièrement sur l'autorité rhétorique, la soutenance de présentations avancées, la rédaction académique claire et le leadership professionnel à enjeux élevés.">
-                            An executive communication incubator designed specifically for educators, scholars, and business professionals. It focuses entirely on rhetorical authority, advanced presentation defense, clear academic authorship, and high-stakes workplace leadership.
+                           data-en="Real-world communication designed specifically for university teachers and business professionals. It focuses entirely on presentations, formal writing (emails/reports), negotiations, and more."
+                           data-fr="Une communication ancrée dans le monde réel, conçue spécifiquement pour les enseignants universitaires et les professionnels. Elle se concentre entièrement sur les présentations, la rédaction formelle (e-mails/rapports), les négociations, et plus encore.">
+                            Real-world communication designed specifically for university teachers and business professionals. It focuses entirely on presentations, formal writing (emails/reports), negotiations, and more.
                         </p>
+
+                        <button class="learn-more-trigger lang-node" onclick="toggleDetailsDrawer('drawer-pace')" data-en="More Details" data-fr="Plus de détails">More Details</button>
+                        
+                        <div id="drawer-pace" class="expanded-details-drawer">
+                            <div class="drawer-inner-content">
+                                <h4 class="lang-node" data-en="What We Offer:" data-fr="Ce Que Nous Offrons :">What We Offer:</h4>
+                                <ul class="details-list">
+                                    <li class="lang-node" data-en="A 5-week intensive training" data-fr="Une formation intensive de 5 semaines">A 5-week intensive training</li>
+                                    <li class="lang-node" data-en="Real-life vocabulary in use" data-fr="Vocabulaire pratique en contexte réel">Real-life vocabulary in use</li>
+                                    <li class="lang-node" data-en="Presentations & email writing" data-fr="Présentations & rédaction d'e-mails">Presentations & email writing</li>
+                                    <li class="lang-node" data-en="Access to our alumni network" data-fr="Accès à notre réseau d'alumni">Access to our alumni network</li>
+                                </ul>
+                                <div class="price-display-box">12500 DZD</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-bottom-accent"></div>
                 </div>
@@ -859,8 +907,16 @@
         </div>
     </footer>
 
+    <!-- DYNAMIC WHATSAPP INTERACTIVE TRIGGER 
+         Replace YOUR_PHONE_NUMBER below with your actual digits including international country code (e.g., 213XXXXXXXXX) -->
+    <a href="https://wa.me/YOUR_PHONE_NUMBER" target="_blank" class="whatsapp-floating-trigger" aria-label="Chat via WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.4 0 12.008 0c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 12.002-11.948 12.002-1.998-.001-3.951-.5-5.688-1.448L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.742.002-2.602-1.005-5.05-2.839-6.89C16.605 2.132 14.162 1.11 11.57 1.111c-5.437 0-9.863 4.37-9.867 9.742-.001 1.705.465 3.369 1.347 4.804l-.369 1.348-.972 3.548 3.644-.954.294-.143zM17.141 14.12c-.3-.15-1.774-.875-2.049-.975-.276-.1-.476-.15-.676.15-.2.3-.775.975-.95 1.174-.175.2-.35.226-.65.075-1.206-.603-2.016-1.062-2.812-2.427-.21-.362.21-.336.604-1.127.065-.13.033-.245-.016-.345-.05-.1-.476-1.149-.652-1.573-.171-.413-.344-.357-.476-.364-.122-.006-.264-.007-.405-.007-.141 0-.371.053-.566.265-.195.212-.746.728-.746 1.777 0 1.048.762 2.062.869 2.208.106.146 1.5 2.293 3.636 3.214.508.219.904.35 1.214.449.51.162.974.139 1.341.084.409-.061 1.774-.726 2.024-1.427.25-.7.25-1.3.175-1.427-.075-.127-.275-.201-.575-.351z"/>
+        </svg>
+    </a>
+
     <!-- ==========================================
-       8. ENGINE STRATIFICATION LOGIC
+       9. ENGINE STRATIFICATION LOGIC
        ========================================== -->
     <script>
         // Interactive Drawer Panel Action Controller
