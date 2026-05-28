@@ -316,11 +316,11 @@
             border: 1px solid rgba(0, 31, 63, 0.04);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
             transition: var(--bezier-smooth);
             position: relative;
             overflow: hidden;
-            min-height: 520px;
+            min-height: 400px;
         }
 
         .pathway-card.featured-card {
@@ -341,7 +341,7 @@
         }
 
         .card-top-content {
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
 
         .pathway-header {
@@ -384,7 +384,7 @@
             color: rgba(255, 255, 255, 0.8);
         }
 
-        /* Interactive Expandable System Details */
+        /* Interactive Drawer Panel Design System */
         .learn-more-trigger {
             display: inline-block;
             background: none;
@@ -397,7 +397,7 @@
             color: var(--brand-gold);
             cursor: pointer;
             padding: 0;
-            margin-top: 20px;
+            margin-top: 30px;
             text-align: left;
             transition: var(--bezier-smooth);
         }
@@ -417,11 +417,13 @@
         .expanded-details-drawer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
         }
 
         .expanded-details-drawer.open {
-            max-height: 400px;
+            max-height: 500px;
+            opacity: 1;
         }
 
         .drawer-inner-content {
@@ -479,19 +481,21 @@
             color: var(--brand-navy);
             letter-spacing: -0.5px;
             font-family: 'Inter', sans-serif;
-            margin-top: auto;
-            padding-top: 15px;
+            padding-top: 5px;
+            margin-top: 10px;
+            border-top: 1px dashed rgba(0, 31, 63, 0.1);
         }
 
         .featured-card .price-display-box {
             color: var(--brand-gold);
+            border-top-color: rgba(255, 255, 255, 0.1);
         }
 
         .card-bottom-accent {
             width: 40px;
             height: 2px;
             background-color: var(--brand-gold);
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         /* ==========================================
@@ -740,7 +744,7 @@
                             For anyone looking to speak and write in English for personal and professional purposes. We focus on conversation, fluency and vocabulary enrichment.
                         </p>
                         
-                        <button class="learn-more-trigger lang-node" onclick="toggleDetailsDrawer('drawer-core')" data-en="Learn More" data-fr="En savoir plus">Learn More</button>
+                        <button class="learn-more-trigger lang-node" onclick="toggleDetailsDrawer('drawer-core')" data-en="More Details" data-fr="Plus de détails">More Details</button>
                         
                         <div id="drawer-core" class="expanded-details-drawer">
                             <div class="drawer-inner-content">
@@ -751,10 +755,10 @@
                                     <li class="lang-node" data-en="Highly interactive learning materials" data-fr="Supports d'apprentissage hautement interactifs">Highly interactive learning materials</li>
                                     <li class="lang-node" data-en="24/7 Access to your dashboard to practice" data-fr="Accès 24/7 à votre tableau de bord pour pratiquer">24/7 Access to your dashboard to practice</li>
                                 </ul>
+                                <div class="price-display-box">7500 DZD/month</div>
                             </div>
                         </div>
                     </div>
-                    <div class="price-display-box">7500 DZD/month</div>
                     <div class="card-bottom-accent"></div>
                 </div>
 
@@ -771,7 +775,7 @@
                             An intensive IELTS preparation for Algerians sitting for Academic or General test. Our training strictly follows IELTS requirements (Format, skills, and method). This preparation delivers step-by-step test strategy to target high-band scores required for your international university/work admissions.
                         </p>
                         
-                        <button class="learn-more-trigger lang-node" onclick="toggleDetailsDrawer('drawer-ultra')" data-en="Learn More" data-fr="En savoir plus">Learn More</button>
+                        <button class="learn-more-trigger lang-node" onclick="toggleDetailsDrawer('drawer-ultra')" data-en="More Details" data-fr="Plus de détails">More Details</button>
                         
                         <div id="drawer-ultra" class="expanded-details-drawer">
                             <div class="drawer-inner-content">
@@ -782,10 +786,10 @@
                                     <li class="lang-node" data-en="Access to your dashboard to practice more" data-fr="Accès à votre tableau de bord pour pratiquer davantage">Access to your dashboard to practice more</li>
                                     <li class="lang-node" data-en="Final mock test + personalized feedback & corrections" data-fr="Examen blanc final + commentaires & corrections personnalisés">Final mock test + personalized feedback & corrections</li>
                                 </ul>
+                                <div class="price-display-box">18500 DZD</div>
                             </div>
                         </div>
                     </div>
-                    <div class="price-display-box">18500 DZD</div>
                     <div class="card-bottom-accent" style="background-color: var(--brand-gold);"></div>
                 </div>
 
@@ -865,6 +869,19 @@
             if (!currentTargetDrawer) return;
             
             currentTargetDrawer.classList.toggle('open');
+            
+            // Adjust current triggering button label text subtly based on current state
+            const associatedTriggerBtn = currentTargetDrawer.previousElementSibling;
+            if (associatedTriggerBtn && associatedTriggerBtn.classList.contains('learn-more-trigger')) {
+                const currentSelectedLanguageBtn = document.querySelector('.lang-btn.active');
+                const isFrench = currentSelectedLanguageBtn && currentSelectedLanguageBtn.innerText.toLowerCase() === 'fr';
+                
+                if (currentTargetDrawer.classList.contains('open')) {
+                    associatedTriggerBtn.innerHTML = isFrench ? "Masquer les détails" : "Hide Details";
+                } else {
+                    associatedTriggerBtn.innerHTML = isFrench ? "Plus de détails" : "More Details";
+                }
+            }
         }
 
         // Scroll Management Effect for the Navigation Menu Colors
@@ -943,6 +960,14 @@
         function changeLanguageSystem(targetLanguage) {
             const matchingNodes = document.querySelectorAll('.lang-node');
             matchingNodes.forEach(node => {
+                // If drawer text is modified by user actions, maintain logical state representation instead of overriding blindly
+                if (node.classList.contains('learn-more-trigger')) {
+                    const dynamicDrawer = node.nextElementSibling;
+                    if (dynamicDrawer && dynamicDrawer.classList.contains('expanded-details-drawer') && dynamicDrawer.classList.contains('open')) {
+                        node.innerHTML = (targetLanguage === 'fr') ? "Masquer les détails" : "Hide Details";
+                        return;
+                    }
+                }
                 const mapTranslation = node.getAttribute(`data-${targetLanguage}`);
                 if (mapTranslation) node.innerHTML = mapTranslation;
             });
