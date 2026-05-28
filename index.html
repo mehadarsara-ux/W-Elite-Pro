@@ -266,22 +266,22 @@
         }
 
         /* ==========================================
-           4. OUR OFFERINGS SECTION (FIXED HEIGHT GRID UNIFICATION)
+           4. EDITORIAL LEFT GRID LAYOUT ARCHITECTURE
            ========================================== */
-        #offerings-section {
-            background-color: var(--bg-ultra-light);
-            padding: 160px 8%;
-            border-bottom: 1px solid var(--border-line);
-        }
-
-        .offerings-wrapper {
+        .editorial-left-grid {
+            display: grid;
+            grid-template-columns: 0.7fr 1.3fr;
+            gap: 80px;
             max-width: 1300px;
             margin: 0 auto;
         }
 
-        .offerings-top-bar {
+        .section-meta-side {
             text-align: left;
-            margin-bottom: 80px;
+        }
+
+        .section-content-side {
+            text-align: left;
         }
 
         .section-label {
@@ -301,27 +301,64 @@
             font-weight: 400;
         }
 
-        /* FLEXBOX EQUAL SPACING ALIGNMENT DRIVER */
+        /* ==========================================
+           5. ABOUT SECTION
+           ========================================== */
+        #about-section {
+            background-color: var(--bg-pure-white);
+            padding: 160px 8% 80px 8%;
+            border-bottom: 1px solid var(--border-line);
+        }
+
+        .about-text-wrapper p {
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .about-text-wrapper p strong {
+            font-weight: 600;
+            color: var(--brand-navy);
+        }
+
+        /* ==========================================
+           6. W-ELITE OFFERINGS SECTION (FIXED HEIGHT)
+           ========================================== */
+        #offerings-section {
+            background-color: var(--bg-ultra-light);
+            padding: 160px 8%;
+            border-bottom: 1px solid var(--border-line);
+        }
+
+        .offerings-wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .offerings-top-bar {
+            text-align: left;
+            margin-bottom: 80px;
+        }
+
         .premium-structural-grid {
             display: flex;
             justify-content: space-between;
-            align-items: stretch; /* Keeps all cards at the exact same vertical height */
+            align-items: stretch;
             gap: 35px;
         }
 
-        /* Standardized Card Template & Flex Structuring */
         .pathway-card {
             background-color: var(--bg-pure-white);
             padding: 50px 40px;
             border-radius: 4px;
             box-shadow: 0 10px 40px rgba(0, 31, 63, 0.03);
             border: 1px solid rgba(0, 31, 63, 0.04);
-            
-            flex: 1; /* Makes cards identical wide widths */
+            flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Securely isolates bottom pricing area */
-            
+            justify-content: space-between;
             transition: var(--bezier-smooth);
             position: relative;
             overflow: hidden;
@@ -344,7 +381,7 @@
         }
 
         .card-top-content {
-            flex-grow: 1; /* Absorbs inner flexibility variations to enforce straight pricing lines */
+            flex-grow: 1;
         }
 
         .pathway-header {
@@ -387,7 +424,6 @@
             color: rgba(255, 255, 255, 0.9);
         }
 
-        /* Interactive Drawer Architecture */
         .learn-more-trigger {
             display: inline-block;
             background: none;
@@ -478,9 +514,8 @@
             color: var(--brand-gold);
         }
 
-        /* STRICT PRICE ALIGNMENT BASELINE LOCK */
         .card-bottom-row {
-            margin-top: auto; /* Enforces straight absolute bottom alignment line */
+            margin-top: auto;
             padding-top: 25px;
         }
 
@@ -507,27 +542,12 @@
         }
 
         /* ==========================================
-           5. SUCCESS STORIES & PREMIUM AUDIO
+           7. SUCCESS STORIES & PREMIUM AUDIO
            ========================================== */
         #success-stories-section {
             background-color: var(--bg-pure-white);
             padding: 160px 8%;
-        }
-
-        .editorial-left-grid {
-            display: grid;
-            grid-template-columns: 0.7fr 1.3fr;
-            gap: 80px;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        .section-meta-side {
-            text-align: left;
-        }
-
-        .section-content-side {
-            text-align: left;
+            border-bottom: 1px solid var(--border-line);
         }
 
         .endorsement-block {
@@ -565,7 +585,6 @@
             display: inline-block;
         }
 
-        /* Elite Institutional Audio Deck */
         .audio-testimonial-container {
             display: flex;
             flex-direction: column;
@@ -578,26 +597,109 @@
             padding: 25px 30px;
             border-left: 3px solid var(--brand-gold);
             display: flex;
-            flex-direction: column;
-            gap: 12px;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
         }
 
         .audio-card-meta {
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--brand-navy);
+            display: block;
         }
 
-        .audio-card-item audio {
-            width: 100%;
-            max-width: 450px;
-            outline: none;
+        .audio-btn {
+            background-color: var(--brand-navy);
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--bezier-smooth);
+            height: fit-content;
+            min-width: 120px;
+            justify-content: center;
+            border-radius: 4px;
+        }
+
+        .audio-btn:hover {
+            background-color: var(--brand-gold);
         }
 
         /* ==========================================
-           6. INSTITUTIONAL STATIC FOOTER MATRIX
+           8. FAQ SECTION ARCHITECTURE
+           ========================================== */
+        #faq-section {
+            background-color: var(--bg-ultra-light);
+            padding: 160px 8%;
+        }
+
+        .faq-wrapper-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-accordion-node {
+            background-color: var(--bg-pure-white);
+            border: 1px solid var(--border-line);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: var(--bezier-smooth);
+        }
+
+        .faq-header-trigger {
+            width: 100%;
+            padding: 24px 35px;
+            background: none;
+            border: none;
+            text-align: left;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--brand-navy);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-icon-marker {
+            font-size: 1.2rem;
+            color: var(--brand-gold);
+            transition: var(--bezier-smooth);
+        }
+
+        .faq-content-pane {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+        }
+
+        .faq-content-pane.open {
+            max-height: 300px;
+            opacity: 1;
+        }
+
+        .faq-inner-prose {
+            padding: 0 35px 30px 35px;
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ==========================================
+           9. INSTITUTIONAL STATIC FOOTER MATRIX
            ========================================== */
         footer {
             background-color: var(--brand-navy);
@@ -652,7 +754,7 @@
         }
 
         /* ==========================================
-           7. PREMIUM WHATSAPP FLOATING BUTTON
+           10. PREMIUM WHATSAPP FLOATING BUTTON
            ========================================== */
         .whatsapp-floating-trigger {
             position: fixed;
@@ -684,7 +786,7 @@
         }
 
         /* ==========================================
-           8. RESPONSIVE REFINEMENT CORRECTIONS
+           11. RESPONSIVE REFINEMENT CORRECTIONS
            ========================================== */
         @media (max-width: 1100px) {
             .editorial-left-grid {
@@ -705,9 +807,10 @@
             #first-page { padding: 140px 30px 60px 30px; }
             .typewriter-container { font-size: 2.2rem; min-height: 110px; }
             .prose-main { font-size: 1.15rem; }
-            #offerings-section, #success-stories-section { padding: 90px 30px; }
+            #about-section, #offerings-section, #success-stories-section, #faq-section { padding: 90px 30px; }
             .section-main-title { font-size: 2.2rem; }
             .pathway-title { font-size: 1.7rem; }
+            .audio-card-item { flex-direction: column; align-items: flex-start; }
             .footer-container { flex-direction: column; align-items: flex-start; gap: 25px; }
             .footer-right { text-align: left; }
             .whatsapp-floating-trigger { bottom: 25px; right: 25px; width: 48px; height: 48px; }
@@ -723,8 +826,10 @@
             <a href="#" class="logo">W-ELITE PRO</a>
             
             <nav class="nav-center-menu">
-                <a href="#offerings-section" class="lang-node" data-en="Our Offerings" data-fr="Nos Offres">Our Offerings</a>
+                <a href="#about-section" class="lang-node" data-en="About" data-fr="À Propos">About</a>
+                <a href="#offerings-section" class="lang-node" data-en="W-Elite Offerings" data-fr="Offres W-Elite">W-Elite Offerings</a>
                 <a href="#success-stories-section" class="lang-node" data-en="Success Stories" data-fr="Témoignages">Success Stories</a>
+                <a href="#faq-section" class="lang-node" data-en="FAQ" data-fr="FAQ">FAQ</a>
             </nav>
 
             <div class="nav-right-cluster">
@@ -739,11 +844,11 @@
         </div>
     </header>
 
-    <!-- FIRST PAGE -->
+    <!-- FIRST PAGE: HERO -->
     <section id="first-page">
         <div class="hero-left-layout">
             <div class="typewriter-container">
-                <span>English for </span><span id="typewriter" class="typewriter-target"></span>
+                <span>W-Elite | English for </span><span id="typewriter" class="typewriter-target"></span>
             </div>
             
             <div class="editorial-description">
@@ -761,11 +866,34 @@
         </div>
     </section>
 
-    <!-- SECOND PAGE: Our OFFERINGS -->
+    <!-- NEW SECTION: ABOUT US -->
+    <section id="about-section">
+        <div class="editorial-left-grid">
+            <div class="section-meta-side">
+                <span class="section-label lang-node" data-en="Our Faculty" data-fr="Notre Faculté">Our Faculty</span>
+                <h2 class="section-main-title lang-node" data-en="About Us" data-fr="À Propos de Nous">About Us</h2>
+            </div>
+            <div class="section-content-side about-text-wrapper">
+                <p class="lang-node"
+                   data-en="<strong>W-Elite Pro</strong> is a premium language institute founded by university teachers and language experts. We help professionals, academic scholars, and high-achieving students reach top international standards in English."
+                   data-fr="<strong>W-Elite Pro</strong> est un institut de langues de premier choix fondé par des enseignants universitaires et des experts en langues. Nous aidons les professionnels, les universitaires et les étudiants performants à atteindre les standards internationaux les plus élevés en anglais.">
+                    <strong>W-Elite Pro</strong> is a premium language institute founded by university teachers and language experts. We help professionals, academic scholars, and high-achieving students reach top international standards in English.
+                </p>
+                <p class="lang-node"
+                   data-en="Led by Dr. Sara Mehadar (PhD in Comparative Literature) and Senior IELTS Specialist Nissa, our programs focus on academic precision and real-world results. We do not offer casual, informal coaching. Instead, we use structured university-level frameworks to help you succeed. Whether you need to pass the IELTS exam with a high score or present your work on a global stage, W-Elite Pro gives you the skills and confidence to stand out."
+                   data-fr="Dirigés par le Dr Sara Mehadar (Doctorat en Littérature Comparée) et la spécialiste principale de l'IELTS Nissa, nos programmes se concentrent sur la précision académique et les résultats concrets. Nous ne proposons pas de coaching informel. Au lieu de cela, nous utilisons des structures de niveau universitaire pour vous mener au succès. Que vous ayez besoin de réussir l'IELTS avec un score élevé ou de présenter vos travaux à l'international, W-Elite Pro vous donne les compétences et la confiance nécessaires.">
+                    Led by Dr. Sara Mehadar (PhD in Comparative Literature) and Senior IELTS Specialist Nissa, our programs focus on academic precision and real-world results. We do not offer casual, informal coaching. Instead, we use structured university-level frameworks to help you succeed. Whether you need to pass the IELTS exam with a high score or present your work on a global stage, W-Elite Pro gives you the skills and confidence to stand out.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECOND PAGE: W-ELITE OFFERINGS -->
     <section id="offerings-section">
         <div class="offerings-wrapper">
             <div class="offerings-top-bar">
-             <h2 class="section-main-title lang-node" data-en="Our Offerings" data-fr="Offres W-Elite">Our Offerings</h2>
+                <span class="section-label lang-node" data-en="Curated Curriculums" data-fr="Programmes Dédiés">Curated Curriculums</span>
+                <h2 class="section-main-title lang-node" data-en="W-Elite Offerings" data-fr="Offres W-Elite">W-Elite Offerings</h2>
             </div>
 
             <div class="premium-structural-grid">
@@ -797,7 +925,6 @@
                         </div>
                     </div>
                     
-                    <!-- Bottom row locked together -->
                     <div class="card-bottom-row">
                         <div class="price-display-box">7500 DZD<span style="font-size:0.8rem; font-weight:300;">/month</span></div>
                         <div class="card-bottom-accent"></div>
@@ -832,7 +959,6 @@
                         </div>
                     </div>
                     
-                    <!-- Bottom row locked together -->
                     <div class="card-bottom-row">
                         <div class="price-display-box">18500 DZD</div>
                         <div class="card-bottom-accent" style="background-color: var(--brand-gold);"></div>
@@ -867,7 +993,6 @@
                         </div>
                     </div>
                     
-                    <!-- Bottom row locked together -->
                     <div class="card-bottom-row">
                         <div class="price-display-box">12500 DZD</div>
                         <div class="card-bottom-accent"></div>
@@ -877,7 +1002,7 @@
         </div>
     </section>
 
-    <!-- THIRD PAGE: SUCCESS STORIES -->
+    <!-- THIRD PAGE: SUCCESS STORIES & REAL AUDIO MATRIX -->
     <section id="success-stories-section">
         <div class="editorial-left-grid">
             <div class="section-meta-side">
@@ -888,7 +1013,7 @@
             <div class="section-content-side">
                 <!-- Academic Endorsement Module -->
                 <div class="endorsement-block">
-                    <span class="section-label style="font-size: 0.65rem; color: var(--text-muted); margin-bottom: 10px;" lang-node" data-en="Academic Endorsement" data-fr="Approbation Académique">Academic Endorsement</span>
+                    <span class="section-label lang-node" style="font-size: 0.65rem; color: var(--text-muted); margin-bottom: 10px;" data-en="Academic Endorsement" data-fr="Approbation Académique">Academic Endorsement</span>
                     <p class="quote-text lang-node"
                        data-en='"Whether you are looking to master professional communication skills or gain fluency for academic purposes, the systematic approach and clear, effective teaching style at W-Elite Pro will guide you toward your goals."'
                        data-fr='"Que vous cherchiez à maîtriser les compétences de communication professionnelle ou à acquérir une aisance académique, l’approche systématique et le style d’enseignement efficace de W-Elite Pro vous guideront vers vos objectifs."'>
@@ -897,16 +1022,131 @@
                     <p class="quote-author">— Prof. F. Benyelles Bedjaoui (PhD Thesis Supervisor)</p>
                 </div>
 
-                <!-- Premium Audio Success Track Node Area -->
+                <!-- Elite Audio Testimonials Grid -->
                 <div class="audio-testimonial-container">
-                    <div class="audio-card-item">
-                        <span class="audio-card-meta lang-node" data-en="Student Success Story: IELTS Academic Achievement" data-fr="Témoignage Étudiant : Succès IELTS Académique">Student Success Story: IELTS Academic Achievement</span>
-                        <!-- Replace 'audio/student-audio-track.mp3' with your specific audio destination link -->
-                        <audio controls>
-                            <source src="audio/student-audio-track.mp3" type="audio/mpeg">
-                            Your browser does not support the audio playback engine.
-                        </audio>
+                    <span class="section-label lang-node" style="font-size: 0.65rem; color: var(--text-muted); margin-bottom: 15px; display: block;" data-en="Audio Success Tracks" data-fr="Témoignages Audio">Audio Success Tracks</span>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
+                        
+                        <!-- Audio Track 1 -->
+                        <div class="audio-card-item">
+                            <div>
+                                <span class="audio-card-meta lang-node" data-en="IELTS Academic Achievement" data-fr="Succès IELTS Académique">IELTS Academic Achievement</span>
+                                <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 2px;" class="lang-node" data-en="Listen to a graduate share their test strategy experience." data-fr="Écoutez un diplômé partager son expérience de stratégie d'examen.">Listen to a graduate share their test strategy experience.</p>
+                            </div>
+                            <audio id="testimonialAudio1">
+                                <source src="audio/ielts-success-track.mp3" type="audio/mpeg">
+                            </audio>
+                            <button class="audio-btn" onclick="toggleTestimonialAudio('testimonialAudio1', 'btnIcon1')">
+                                <span id="btnIcon1">▶</span> <span class="lang-node" data-en="Listen" data-fr="Écouter">Listen</span>
+                            </button>
+                        </div>
+
+                        <!-- Audio Track 2 -->
+                        <div class="audio-card-item">
+                            <div>
+                                <span class="audio-card-meta lang-node" data-en="Professional Fluency Growth" data-fr="Développement de la fluidité professionnelle">Professional Fluency Growth</span>
+                                <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 2px;" class="lang-node" data-en="Listen to a corporate professional talk about their career progress." data-fr="Écoutez un professionnel parler de ses progrès de carrière.">Listen to a corporate professional talk about their career progress.</p>
+                            </div>
+                            <audio id="testimonialAudio2">
+                                <source src="audio/fluency-success-track.mp3" type="audio/mpeg">
+                            </audio>
+                            <button class="audio-btn" onclick="toggleTestimonialAudio('testimonialAudio2', 'btnIcon2')">
+                                <span id="btnIcon2">▶</span> <span class="lang-node" data-en="Listen" data-fr="Écouter">Listen</span>
+                            </button>
+                        </div>
+
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: FAQ COHORT SYSTEM -->
+    <section id="faq-section">
+        <div class="editorial-left-grid">
+            <div class="section-meta-side">
+                <span class="section-label lang-node" data-en="Information" data-fr="Informations">Information</span>
+                <h2 class="section-main-title lang-node" data-en="FAQ" data-fr="FAQ">FAQ</h2>
+            </div>
+            <div class="section-content-side">
+                <div class="faq-wrapper-list">
+                    
+                    <!-- Item 1 -->
+                    <div class="faq-accordion-node">
+                        <button class="faq-header-trigger" onclick="toggleFaqNode('faq-1')">
+                            <span class="lang-node" data-en="Who are the teachers at W-Elite Pro?" data-fr="Qui sont les enseignants de W-Elite Pro ?">Who are the teachers at W-Elite Pro?</span>
+                            <span id="faq-1-icon" class="faq-icon-marker">+</span>
+                        </button>
+                        <div id="faq-1" class="faq-content-pane">
+                            <div class="faq-inner-prose lang-node"
+                                 data-en="All our programs are created and taught by qualified university faculty members and TEFL-certified professionals. Our instructors hold advanced degrees, including Master’s degrees and PhDs in English. We bring academic expertise and serious teaching methods to every session, not casual coaching."
+                                 data-fr="Tous nos programmes sont créés et enseignés par des professeurs d'université qualifiés et des professionnels certifiés TEFL. Nos instructeurs détiennent des diplômes avancés, notamment des Masters et des Doctorats en anglais. Nous apportons une expertise académique et des méthodes d'enseignement sérieuses à chaque session, et non un coaching informel.">
+                                All our programs are created and taught by qualified university faculty members and TEFL-certified professionals. Our instructors hold advanced degrees, including Master’s degrees and PhDs in English. We bring academic expertise and serious teaching methods to every session, not casual coaching.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="faq-accordion-node">
+                        <button class="faq-header-trigger" onclick="toggleFaqNode('faq-2')">
+                            <span class="lang-node" data-en="Why are the classes limited to such small groups?" data-fr="Pourquoi les classes sont-elles limitées à de si petits groupes ?">Why are the classes limited to such small groups?</span>
+                            <span id="faq-2-icon" class="faq-icon-marker">+</span>
+                        </button>
+                        <div id="faq-2" class="faq-content-pane">
+                            <div class="faq-inner-prose lang-node"
+                                 data-en="We keep our classes very small to guarantee the highest quality of education. W-Core is strictly limited to 6 learners, and W-Ultra has only 3 to 8 students per group. This allows our university instructors to check your progress closely, correct your essays, and give you personal feedback."
+                                 data-fr="Nous gardons nos classes très restreintes pour garantir la plus haute qualité d'éducation. W-Core est strictement limité à 6 apprenants, et W-Ultra ne compte que 3 à 8 étudiants par groupe. Cela permet à nos professeurs d'université de suivre de près vos progrès, de corriger vos essais et de vous donner un feedback personnalisé.">
+                                We keep our classes very small to guarantee the highest quality of education. W-Core is strictly limited to 6 learners, and W-Ultra has only 3 to 8 students per group. This allows our university instructors to check your progress closely, correct your essays, and give you personal feedback.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="faq-accordion-node">
+                        <button class="faq-header-trigger" onclick="toggleFaqNode('faq-3')">
+                            <span class="lang-node" data-en="Is there an entry test or selection process?" data-fr="Y a-t-il un test d'entrée ou un processus de sélection ?">Is there an entry test or selection process?</span>
+                            <span id="faq-3-icon" class="faq-icon-marker">+</span>
+                        </button>
+                        <div id="faq-3" class="faq-content-pane">
+                            <div class="faq-inner-prose lang-node"
+                                 data-en="Yes. W-Elite Pro is designed for serious professionals and high-achieving students. To keep our groups focused and high-level, we have a short interview and intake process to check your current English level before you join."
+                                 data-fr="Oui. W-Elite Pro est conçu pour les professionnels sérieux et les étudiants performants. Pour maintenir nos groupes concentrés et de haut niveau, nous organisons un court entretien et un processus d'admission pour vérifier votre niveau d'anglais actuel avant votre inscription.">
+                                Yes. W-Elite Pro is designed for serious professionals and high-achieving students. To keep our groups focused and high-level, we have a short interview and intake process to check your current English level before you join.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="faq-accordion-node">
+                        <button class="faq-header-trigger" onclick="toggleFaqNode('faq-4')">
+                            <span class="lang-node" data-en="How do the prices work?" data-fr="Comment fonctionnent les tarifs ?">How do the prices work?</span>
+                            <span id="faq-4-icon" class="faq-icon-marker">+</span>
+                        </button>
+                        <div id="faq-4" class="faq-content-pane">
+                            <div class="faq-inner-prose lang-node"
+                                 data-en="Our prices reflect our small-group system and expert university teaching. W-Core is a monthly program at 7,500 DZD per month for continuous fluency and speaking practice. Our specialized intensive programs—W-Ultra (IELTS Prep) at 18,500 DZD and W-PACE (Professional & Academic Communication) at 12,500 DZD—are complete, fixed-rate course packages."
+                                 data-fr="Nos tarifs reflètent notre système de petits groupes et notre enseignement universitaire expert. W-Core est un programme mensuel à 7 500 DZD par mois pour une pratique continue de la fluidité et de l'expression orale. Nos programmes intensifs spécialisés—W-Ultra (Préparation IELTS) à 18 500 DZD et W-PACE (Communication Professionnelle & Académique) à 12 500 DZD—sont des forfaits de cours complets à tarif fixe.">
+                                Our prices reflect our small-group system and expert university teaching. W-Core is a monthly program at 7,500 DZD per month for continuous fluency and speaking practice. Our specialized intensive programs—W-Ultra (IELTS Prep) at 18,500 DZD and W-PACE (Professional & Academic Communication) at 12,500 DZD—are complete, fixed-rate course packages.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="faq-accordion-node">
+                        <button class="faq-header-trigger" onclick="toggleFaqNode('faq-5')">
+                            <span class="lang-node" data-en="What happens after I finish my course at W-Elite Pro?" data-fr="Que se passe-t-il après avoir terminé mon cours chez W-Elite Pro ?">What happens after I finish my course at W-Elite Pro?</span>
+                            <span id="faq-5-icon" class="faq-icon-marker">+</span>
+                        </button>
+                        <div id="faq-5" class="faq-content-pane">
+                            <div class="faq-inner-prose lang-node"
+                                 data-en="Your learning does not stop when the course ends. All our graduates get exclusive access to our Alumni Network, which is completely supervised by our university faculty. In this network, you can stay in touch with us, practice your English regularly, and maintain your fluency with a community of other high-achieving professionals."
+                                 data-fr="Votre apprentissage ne s'arrête pas à la fin du cours. Tous nos diplômés bénéficient d'un accès exclusif à notre Réseau des Alumni, entièrement supervisé par notre faculté universitaire. Dans ce réseau, vous pouvez rester en contact avec nous, pratiquer votre anglais régulièrement et maintenir votre fluidité avec une communauté d'autres professionnels performants.">
+                                Your learning does not stop when the course ends. All our graduates get exclusive access to our Alumni Network, which is completely supervised by our university faculty. In this network, you can stay in touch with us, practice your English regularly, and maintain your fluency with a community of other high-achieving professionals.
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -934,8 +1174,8 @@
     </a>
 
     <!-- ==========================================
-       9. ENGINE STRATIFICATION LOGIC
-       ========================================== -->
+       12. ENGINE STRATIFICATION LOGIC
+       ========================================== */ -->
     <script>
         // Interactive Drawer Panel Action Controller
         function toggleDetailsDrawer(drawerId) {
@@ -954,6 +1194,31 @@
                 } else {
                     associatedTriggerBtn.innerHTML = isFrench ? "Plus de détails" : "More Details";
                 }
+            }
+        }
+
+        // Accordion Controller Logic for FAQ Section
+        function toggleFaqNode(nodeId) {
+            const currentPanel = document.getElementById(nodeId);
+            const currentIcon = document.getElementById(nodeId + '-icon');
+            if (!currentPanel) return;
+
+            // Systematically close other panels to prioritize user focus
+            document.querySelectorAll('.faq-content-pane').forEach(panel => {
+                if (panel.id !== nodeId) {
+                    panel.classList.remove('open');
+                    const associatedIcon = document.getElementById(panel.id + '-icon');
+                    if (associatedIcon) associatedIcon.innerText = '+';
+                }
+            });
+
+            // Toggle active state
+            if (currentPanel.classList.contains('open')) {
+                currentPanel.classList.remove('open');
+                currentIcon.innerText = '+';
+            } else {
+                currentPanel.classList.add('open');
+                currentIcon.innerText = '−';
             }
         }
 
@@ -1052,6 +1317,36 @@
             if (executionSourceBtn) executionSourceBtn.classList.add('active');
 
             forceEngineInterrupt();
+        }
+
+        function toggleTestimonialAudio(audioId, iconId) {
+            const selectedAudio = document.getElementById(audioId);
+            const selectedIcon = document.getElementById(iconId);
+            
+            // Systematically pause other audio playbacks
+            document.querySelectorAll('audio').forEach(audioElement => {
+                if (audioElement !== selectedAudio) {
+                    audioElement.pause();
+                }
+            });
+            document.querySelectorAll('.audio-btn span').forEach(iconElement => {
+                if (iconElement !== selectedIcon) {
+                    iconElement.innerText = "▶";
+                }
+            });
+
+            // Toggle selected file state
+            if (selectedAudio.paused) {
+                selectedAudio.play();
+                selectedIcon.innerText = "⏸";
+            } else {
+                selectedAudio.pause();
+                selectedIcon.innerText = "▶";
+            }
+
+            selectedAudio.onended = function() {
+                selectedIcon.innerText = "▶";
+            };
         }
 
         document.addEventListener("DOMContentLoaded", () => {
