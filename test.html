@@ -4,16 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>W-Elite Pro</title>
-    
-    <!-- ==========================================
-       1. CORE VARIABLES, RESET & FONTS
-       ========================================== -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    
     <style>
+        #main-header, header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: #001f3f !important; /* Kept your classic navy blue */
+            border-bottom: 2px solid #ffcc00; /* Thin premium gold ribbon line */
+            transition: all 0.4s ease;
+        }
+        
+        /* Better premium typography for your brand name */
+        .brand-logo-text {
+            font-family: "Playfair Display", "Didot", "Georgia", serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        /* Old Simple Apply Now Button Restored */
+        .simple-apply-btn {
+            background-color: #ffcc00;
+            color: #001f3f;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+        .simple-apply-btn:hover {
+            background-color: #e6b800;
+        }
+    </style>
+
+    <style>
+        /* ==========================================
+           1. CORE VARIABLES & RESET
+           ========================================== */
         :root {
             --brand-navy: #001f3f;      
-            --brand-gold: #ffcc00;     
+            --brand-gold: #D4AF37;      
             --bg-pure-white: #ffffff;   
             --bg-ultra-light: #f8fafc;
             --text-dark: #001f3f;       
@@ -47,17 +82,24 @@
         }
 
         /* ==========================================
-           2. NAVIGATION BAR STYLE
+           2. FLOATING TRANSPARENT MENU BAR
            ========================================== */
-        #main-header {
+        header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            background-color: #001f3f !important;
-            border-bottom: 2px solid #ffcc00;
-            transition: all 0.4s ease;
+            background-color: transparent;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--bezier-smooth);
+        }
+
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 31, 63, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 31, 63, 0.03);
         }
 
         .nav-container {
@@ -66,18 +108,26 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 60px;
+            padding: 22px 60px;
             transition: var(--bezier-smooth);
         }
-        
-        .brand-logo-text {
-            font-family: "Playfair Display", "Didot", "Georgia", serif;
-            font-size: 1.5rem;
+
+        header.scrolled .nav-container {
+            padding: 16px 60px;
+        }
+
+        .logo {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 4px;
             color: #ffffff;
-            text-transform: uppercase;
             text-decoration: none;
+            transition: var(--bezier-smooth);
+        }
+
+        header.scrolled .logo {
+            color: var(--brand-navy);
         }
 
         .nav-center-menu {
@@ -95,6 +145,10 @@
             transition: var(--bezier-smooth);
             position: relative;
             padding: 4px 0;
+        }
+
+        header.scrolled .nav-center-menu a {
+            color: rgba(0, 31, 63, 0.7);
         }
 
         .nav-center-menu a:hover {
@@ -122,21 +176,34 @@
             gap: 25px;
         }
 
-        .simple-apply-btn {
-            background-color: #ffcc00;
-            color: #001f3f;
-            padding: 8px 16px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.9rem;
-            transition: background-color 0.3s ease;
+        .nav-apply-btn {
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: var(--brand-navy);
+            background-color: var(--brand-gold);
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 0px;
+            transition: var(--bezier-smooth);
         }
 
-        .simple-apply-btn:hover {
-            background-color: #e6b800;
+        header.scrolled .nav-apply-btn {
+            color: #ffffff;
+            background-color: var(--brand-navy);
+            box-shadow: 0 4px 15px rgba(0, 31, 63, 0.1);
+        }
+
+        .nav-apply-btn:hover {
+            background-color: #ffffff !important;
+            color: var(--brand-navy) !important;
+            transform: translateY(-2px);
+        }
+
+        header.scrolled .nav-apply-btn:hover {
+            background-color: var(--brand-gold) !important;
+            color: var(--brand-navy) !important;
         }
 
         .lang-switcher {
@@ -150,6 +217,10 @@
             transition: var(--bezier-smooth);
         }
 
+        header.scrolled .lang-switcher {
+            border-left-color: rgba(0, 31, 63, 0.15);
+        }
+
         .lang-btn {
             background: none;
             border: none;
@@ -159,8 +230,17 @@
             transition: var(--bezier-smooth);
         }
 
+        header.scrolled .lang-btn {
+            color: rgba(0, 31, 63, 0.4);
+        }
+
         .lang-btn.active {
             color: var(--brand-gold);
+        }
+
+        header.scrolled .lang-btn.active {
+            color: var(--brand-navy);
+            font-weight: 700;
         }
 
         /* ==========================================
@@ -218,7 +298,7 @@
         }
 
         /* ==========================================
-           4. EDITORIAL GRID ARCHITECTURE
+           4. EDITORIAL LEFT GRID LAYOUT ARCHITECTURE
            ========================================== */
         .editorial-left-grid {
             display: grid;
@@ -276,11 +356,11 @@
         }
 
         /* ==========================================
-           6. OFFERINGS SECTION (REFINED LENGTH)
+           6. W-ELITE OFFERINGS SECTION (FIXED HEIGHT RESOLVED)
            ========================================== */
         #offerings-section {
             background-color: var(--bg-ultra-light);
-            padding: 120px 8%;
+            padding: 160px 8%;
             border-bottom: 1px solid var(--border-line);
         }
 
@@ -291,29 +371,30 @@
 
         .offerings-top-bar {
             text-align: left;
-            margin-bottom: 50px;
+            margin-bottom: 80px;
         }
 
         .premium-structural-grid {
             display: flex;
             justify-content: space-between;
             align-items: stretch;
-            gap: 30px;
+            gap: 35px;
         }
 
         .pathway-card {
             background-color: var(--bg-pure-white);
-            padding: 35px 35px 40px 35px;
+            padding: 50px 40px;
             border-radius: 4px;
             box-shadow: 0 10px 40px rgba(0, 31, 63, 0.03);
             border: 1px solid rgba(0, 31, 63, 0.04);
             flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
             transition: var(--bezier-smooth);
             position: relative;
-            overflow: hidden;
+            overflow: visible; /* Fixed layout clipping */
+            height: auto;      /* Allows natural card growth */
         }
 
         .pathway-card.featured-card {
@@ -333,866 +414,9 @@
         }
 
         .card-top-content {
-            flex-grow: 1;
+            width: 100%;
         }
 
         .pathway-header {
             display: flex;
-            align-items: baseline;
-            gap: 15px;
-            margin-bottom: 5px;
-        }
-
-        .pathway-title {
-            font-size: 2.2rem;
-            color: var(--brand-navy);
-            font-weight: 400;
-            letter-spacing: -0.5px;
-            line-height: 1.1;
-        }
-
-        .featured-card .pathway-title {
-            color: #ffffff;
-        }
-
-        .pathway-tag {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--brand-gold);
-            font-weight: 600;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .pathway-body {
-            font-size: 1.05rem;
-            color: var(--text-dark);
-            font-weight: 400;
-            line-height: 1.6;
-            text-align: left;
-        }
-
-        .featured-card .pathway-body {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .learn-more-trigger {
-            display: inline-block;
-            background: none;
-            border: none;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--brand-gold);
-            cursor: pointer;
-            padding: 0;
-            margin-top: 25px;
-            text-align: left;
-            transition: var(--bezier-smooth);
-        }
-
-        .learn-more-trigger:hover {
-            letter-spacing: 3px;
-        }
-
-        .featured-card .learn-more-trigger {
-            color: #ffffff;
-        }
-
-        .featured-card .learn-more-trigger:hover {
-            color: var(--brand-gold);
-        }
-
-        .expanded-details-drawer {
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
-        }
-
-        .drawer-inner-content {
-            padding-top: 25px;
-            margin-top: 25px;
-            border-top: 1px solid var(--border-line);
-        }
-
-        .featured-card .drawer-inner-content {
-            border-top-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .drawer-inner-content h4 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--brand-navy);
-            margin-bottom: 15px;
-        }
-
-        .featured-card .drawer-inner-content h4 {
-            color: var(--brand-gold);
-        }
-
-        .details-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 25px;
-        }
-
-        .details-list li {
-            font-size: 0.95rem;
-            font-weight: 400;
-            color: var(--text-dark);
-            position: relative;
-            padding-left: 20px;
-        }
-
-        .featured-card .details-list li {
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        .details-list li::before {
-            content: '—';
-            position: absolute;
-            left: 0;
-            color: var(--brand-gold);
-        }
-
-        .card-bottom-row {
-            margin-top: auto;
-            padding-top: 15px;
-        }
-
-        .card-bottom-accent {
-            width: 40px;
-            height: 2px;
-            background-color: var(--brand-gold);
-            margin-top: 15px;
-        }
-
-        /* ==========================================
-           7. SUCCESS STORIES & AUDIO
-           ========================================== */
-        #success-stories-section {
-            background-color: var(--bg-pure-white);
-            padding: 160px 8%;
-            border-bottom: 1px solid var(--border-line);
-        }
-
-        .endorsement-block {
-            padding-bottom: 60px;
-            margin-bottom: 40px;
-            border-bottom: 1px solid var(--border-line);
-        }
-
-        .quote-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.55rem;
-            font-style: italic;
-            line-height: 1.8;
-            color: var(--brand-navy);
-            margin-bottom: 25px;
-            font-weight: 400;
-        }
-
-        .quote-author {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--brand-navy);
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .quote-author::before {
-            content: '';
-            width: 20px;
-            height: 1px;
-            background-color: var(--brand-gold);
-            display: inline-block;
-        }
-
-        .audio-card-item {
-            background-color: var(--bg-ultra-light);
-            padding: 25px 30px;
-            border-left: 3px solid var(--brand-gold);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .audio-card-meta {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-            color: var(--brand-navy);
-            display: block;
-        }
-
-        .audio-btn {
-            background-color: var(--brand-navy);
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: var(--bezier-smooth);
-            height: fit-content;
-            min-width: 120px;
-            justify-content: center;
-            border-radius: 4px;
-        }
-
-        .audio-btn:hover {
-            background-color: var(--brand-gold);
-        }
-
-        /* ==========================================
-           8. FAQ SECTION ARCHITECTURE
-           ========================================== */
-        #faq-section {
-            background-color: var(--bg-ultra-light);
-            padding: 160px 8%;
-        }
-
-        .faq-wrapper-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .faq-accordion-node {
-            background-color: var(--bg-pure-white);
-            border: 1px solid var(--border-line);
-            border-radius: 4px;
-            overflow: hidden;
-            transition: var(--bezier-smooth);
-        }
-
-        .faq-header-trigger {
-            width: 100%;
-            padding: 24px 35px;
-            background: none;
-            border: none;
-            text-align: left;
-            font-family: 'Inter', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--brand-navy);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .faq-icon-marker {
-            font-size: 1.2rem;
-            color: var(--brand-gold);
-            transition: var(--bezier-smooth);
-        }
-
-        .faq-content-pane {
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
-        }
-
-        .faq-inner-prose {
-            padding: 0 35px 30px 35px;
-            font-size: 1rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        /* ==========================================
-           9. APPLICATION FORM SECTION
-           ========================================== */
-        #apply {
-            padding: 160px 8%;
-            background-color: var(--bg-pure-white);
-            border-top: 1px solid var(--border-line);
-        }
-
-        .form-container {
-            max-width: 700px;
-            margin: 0 auto 0 0;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            color: var(--brand-navy);
-            font-weight: 600;
-        }
-
-        .form-input, .form-select, .form-textarea {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid rgba(0, 31, 63, 0.15);
-            background-color: var(--bg-ultra-light);
-            color: var(--text-dark);
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            border-radius: 4px;
-            transition: var(--bezier-smooth);
-        }
-
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--brand-navy);
-            background-color: var(--bg-pure-white);
-        }
-
-        .submit-form-btn {
-            background-color: var(--brand-navy);
-            color: #ffffff;
-            padding: 15px 35px;
-            border: none;
-            border-radius: 4px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: var(--bezier-smooth);
-        }
-
-        .submit-form-btn:hover {
-            background-color: var(--brand-gold);
-            color: var(--brand-navy);
-        }
-
-        /* ==========================================
-           10. RESPONSIVE REFINEMENTS
-           ========================================== */
-        @media (max-width: 1100px) {
-            .editorial-left-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .premium-structural-grid {
-                flex-direction: column;
-                gap: 30px;
-            }
-            .nav-center-menu {
-                display: none; 
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-container { padding: 20px 30px; }
-            #first-page { padding: 140px 30px 60px 30px; }
-            .typewriter-container { font-size: 2.2rem; min-height: 110px; }
-            .prose-main { font-size: 1.15rem; }
-            #about-section, #faq-section, #apply { padding: 90px 30px; }
-            #offerings-section { padding: 80px 30px; }
-            .section-main-title { font-size: 2.2rem; }
-            .pathway-title { font-size: 1.7rem; }
-            .audio-card-item { flex-direction: column; align-items: flex-start; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- HIGH-LEVEL HEADER NAVIGATION Layer -->
-    <header id="main-header">
-        <div class="nav-container">
-            <a href="#" class="brand-logo-text">W-Elite Pro</a>
-            
-            <nav class="nav-center-menu">
-                <a href="#about-section" class="lang-node" data-en="ABOUT" data-fr="À PROPOS">ABOUT</a>
-                <a href="#offerings-section" class="lang-node" data-en="OUR OFFERINGS" data-fr="NOS OFFRES">OUR OFFERINGS</a>
-                <a href="#success-stories-section" class="lang-node" data-en="SUCCESS STORIES" data-fr="TÉMOIGNAGES">SUCCESS STORIES</a>
-                <a href="#faq-section" class="lang-node" data-en="FAQ" data-fr="FAQ">FAQ</a>
-            </nav>
-
-            <div class="nav-right-cluster">
-                <a href="#apply" class="simple-apply-btn lang-node" data-en="APPLY NOW" data-fr="POSTULER">APPLY NOW</a>
-                
-                <div class="lang-switcher">
-                    <button class="lang-btn active" onclick="changeLanguageSystem('en')">EN</button>
-                    <span style="color:rgba(255,255,255,0.2)">|</span>
-                    <button class="lang-btn" onclick="changeLanguageSystem('fr')">FR</button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- SECTION 1: HERO CONTAINER -->
-    <section id="first-page">
-        <div class="hero-left-layout">
-            <div class="typewriter-container">
-                <span class="lang-node" data-en="English for " data-fr="L'anglais pour ">English for </span><span id="typewriter" class="typewriter-target"></span>
-            </div>
-            
-            <div class="editorial-description">
-                <p class="prose-main lang-node" 
-                   data-en="W-Elite Pro is designed for anyone ready to master English—from everyday fluency and high-band IELTS prep to professional and academic success." 
-                   data-fr="W-Elite Pro est conçu pour tous ceux qui sont prêts à maîtriser l'anglais—de l'aisance quotidienne et la préparation intensive à l'IELTS, jusqu'au succès professionnel et académique.">
-                    W-Elite Pro is designed for anyone ready to master English—from everyday fluency and high-band IELTS prep to professional and academic success.
-                </p>
-                <p class="prose-sub lang-node" 
-                   data-en="Our expert-led programs give you the skills, confidence, and clear pathways to speak and write successfully on a global stage."
-                   data-fr="Nos programmes dirigés par des experts vous donnent les compétences, la confiance et les parcours clairs pour vous exprimer et écrire avec succès sur la scène mondiale.">
-                    Our expert-led programs give you the skills, confidence, and clear pathways to speak and write successfully on a global stage.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 2: ACADEMIC ABOUT PORTFOLIO -->
-    <section id="about-section">
-        <div class="editorial-left-grid">
-            <div class="section-meta-side">
-                <span class="section-label lang-node" data-en="Our Faculty" data-fr="Notre Faculté">Our Faculty</span>
-                <h2 class="section-main-title lang-node" data-en="About Us" data-fr="À Propos de Nous">About Us</h2>
-            </div>
-            <div class="section-content-side about-text-wrapper">
-                <p class="lang-node"
-                   data-en="<strong>W-Elite Pro</strong> is a premium language institute founded by university teachers and language experts. We help professionals, academic scholars, and high-achieving students reach top international standards in English."
-                   data-fr="<strong>W-Elite Pro</strong> est un institut de langues de premier choix fondé par des enseignants universitaires et des experts en langues. Nous aidons les professionnels, les universitaires et les étudiants performants à atteindre les standards internationaux les plus élevés en anglais.">
-                    <strong>W-Elite Pro</strong> is a premium language institute founded by university teachers and language experts. We help professionals, academic scholars, and high-achieving students reach top international standards in English.
-                </p>
-                <p class="lang-node"
-                   data-en="Led by Dr. Sara Mehadar (PhD in Comparative Literature) and Senior IELTS Specialist Nissa, our programs focus on academic precision and real-world results. We do not offer casual, informal coaching. Instead, we use structured university-level frameworks to help you succeed. Whether you need to pass the IELTS exam with a high score or present your work on a global stage, W-Elite Pro gives you the skills and confidence to stand out."
-                   data-fr="Dirigés par le Dr Sara Mehadar (Doctorat en Littérature Comparée) et la spécialiste principale de l'IELTS Nissa, nos programmes se concentrent sur la précision académique et les résultats concrets. Nous ne proposons pas de coaching informel. Au lieu de cela, nous utilisons des structures de niveau universitaire pour vous mener au succès. Que vous ayez besoin de réussir l'IELTS avec un score élevé ou de présenter vos travaux à l'international, W-Elite Pro vous donne les compétences et la confiance nécessaires.">
-                    Led by Dr. Sara Mehadar (PhD in Comparative Literature) and Senior IELTS Specialist Nissa, our programs focus on academic precision and real-world results. We do not offer casual, informal coaching. Instead, we use structured university-level frameworks to help you succeed. Whether you need to pass the IELTS exam with a high score or present your work on a global stage, W-Elite Pro gives you the skills and confidence to stand out.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 3: W-ELITE CURRICULUMS OFFERINGS -->
-    <section id="offerings-section">
-        <div class="offerings-wrapper">
-            <div class="offerings-top-bar">
-                <span class="section-label lang-node" data-en="Curated Curriculums" data-fr="Programmes Dédiés">Curated Curriculums</span>
-                <h2 class="section-main-title lang-node" data-en="W-Elite Offerings" data-fr="Offres W-Elite">W-Elite Offerings</h2>
-            </div>
-
-            <div class="premium-structural-grid">
-                <!-- Program Node: W-Core -->
-                <div class="pathway-card">
-                    <div class="card-top-content">
-                        <div class="pathway-header">
-                            <h3 class="pathway-title">W-Core</h3>
-                        </div>
-                        <span class="pathway-tag lang-node" data-en="General & Fluency" data-fr="Général & Fluidité">General & Fluency</span>
-                        <p class="pathway-body lang-node"
-                           data-en="For anyone looking to speak and write in English for personal and professional purposes. We focus on conversation, fluency and vocabulary enrichment."
-                           data-fr="Pour tous ceux qui souhaitent parler et écrire en anglais à des fins personnelles et professionnelles. Nous nous concentrons sur la conversation, la fluidité et l'enrichissement du vocabulaire.">
-                             For anyone looking to speak and write in English for personal and professional purposes. We focus on conversation, fluency and vocabulary enrichment.
-                        </p>
-                        
-                        <button class="learn-more-trigger lang-node" onclick="toggleDetailsDrawer('drawer-core')" data-en="More Details" data-fr="Plus de détails">More Details</button>
-                        
-                        <div id="drawer-core" class="expanded-details-drawer">
-                            <div class="drawer-inner-content">
-                                <h4 class="lang-node" data-en="What We Offer:" data-fr="Ce Que Nous Offrons :">What We Offer:</h4>
-                                <ul class="details-list">
-                                    <li class="lang-node" data-en="02 sessions/week" data-fr="02 séances / semaine">02 sessions/week</li>
-                                    <li class="lang-node" data-en="Small groups ONLY: 6 learners maximum" data-fr="Groupes réduits UNIQUEMENT : 6 apprenants maximum">Small groups ONLY: 6 learners maximum</li>
-                                    <li class="lang-node" data-en="Highly interactive learning materials" data-fr="Supports d'apprentissage hautement interactifs">Highly interactive learning materials</li>
-                                    <li class="lang-node" data-en="24/7 Access to your dashboard to practice" data-fr="Accès 24/7 à votre tableau de bord pour pratiquer">24/7 Access to your dashboard to practice</li>
-                                </ul>
-
-                                <div style="padding: 12px 15px; background-color: rgba(0, 31, 63, 0.05); border-radius: 4px; margin-top: 15px;">
-                                    <span style="font-weight: 700; color: #001f3f; font-size: 1.05rem;" class="lang-node" data-en="Investment: 7,500 DZD / Month" data-fr="Investissement : 7 500 DZD / Mois">Investment: 7,500 DZD / Month</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-bottom-row"><div class="card-bottom-accent"></div></div>
-                </div>
-
-                <!-- Program Node: W-Ultra -->
-                <div class="pathway-card featured-card">
-                    <div class="card-top-content">
-                        <div class="pathway-header">
-                            <h3 class="pathway-title">W-Ultra</h3>
-                        </div>
-                        <span class="pathway-tag lang-node" data-en="IELTS Preparation" data-fr="Préparation IELTS">IELTS Preparation</span>
-                        <p class="pathway-body lang-node"
-                           data-en="An intensive IELTS preparation (General and Academic). IELTS Prep at W-Elite Pro delivers step-by-step test strategy to target high-band scores for serious test takers seeking international admissions."
-                           data-fr="Une préparation intensive à l'IELTS (Général et Académique). La préparation IELTS chez W-Elite Pro fournit une stratégie d'examen étape par étape pour viser des scores élevés, destinée aux candidats sérieux recherchant des admissions internationales.">
-                             An intensive IELTS preparation (General and Academic). IELTS Prep at W-Elite Pro delivers step-by-step test strategy to target high-band scores for serious test takers seeking international admissions.
-                        </p>
-                        
-                        <button class="learn-more-trigger lang-node" onclick="toggleDetailsDrawer('drawer-ultra')" data-en="More Details" data-fr="Plus de détails">More Details</button>
-                        
-                        <div id="drawer-ultra" class="expanded-details-drawer">
-                            <div class="drawer-inner-content">
-                                <h4 class="lang-node" data-en="What We Offer:" data-fr="Ce Que Nous Offrons :">What We Offer:</h4>
-                                <ul class="details-list">
-                                    <li class="lang-node" data-en="Small groups ONLY: 3-8 per cohort" data-fr="Groupes réduits UNIQUEMENT : 3-8 par cohorte">Small groups ONLY: 3-8 per cohort</li>
-                                    <li class="lang-node" data-en="A 15-hour preparation" data-fr="Une préparation de 15 heures">A 15-hour preparation</li>
-                                    <li class="lang-node" data-en="Access to your dashboard to practice more" data-fr="Accès à votre tableau de bord pour pratiquer davantage">Access to your dashboard to practice more</li>
-                                    <li class="lang-node" data-en="Final mock test + personalized feedback & corrections" data-fr="Examen blanc final + commentaires & corrections personnalisés">Final mock test + personalized feedback & corrections</li>
-                                </ul>
-
-                                <div style="padding: 12px 15px; background-color: rgba(255, 204, 0, 0.15); border-radius: 4px; margin-top: 15px;">
-                                    <span style="font-weight: 700; color: #001f3f; font-size: 1.05rem;" class="lang-node" data-en="Investment: 18,500 DZD" data-fr="Investissement : 18 500 DZD">Investment: 18,500 DZD</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-bottom-row"><div class="card-bottom-accent" style="background-color: var(--brand-gold);"></div></div>
-                </div>
-
-                <!-- Program Node: W-PACE -->
-                <div class="pathway-card">
-                    <div class="card-top-content">
-                        <div class="pathway-header">
-                            <h3 class="pathway-title">W-PACE</h3>
-                        </div>
-                        <span class="pathway-tag lang-node" data-en="Professional & Academic Communication" data-fr="Communication Professionnelle & Académique">Professional & Academic Communication</span>
-                        <p class="pathway-body lang-node"
-                           data-en="Real-world communication designed specifically for university teachers and business professionals. It focuses entirely on presentations, formal writing (emails/reports), negotiations, and more."
-                           data-fr="Une communication ancrée dans le monde réel, conçue spécifiquement pour les enseignants universitaires et les professionnels. Elle se concentre entièrement sur les présentations, la rédaction formelle (e-mails/rapports), les négociations, et plus encore.">
-                             Real-world communication designed specifically for university teachers and business professionals. It focuses entirely on presentations, formal writing (emails/reports), negotiations, and more.
-                        </p>
-
-                        <button class="learn-more-trigger lang-node" onclick="toggleDetailsDrawer('drawer-pace')" data-en="More Details" data-fr="Plus de détails">More Details</button>
-                        
-                        <div id="drawer-pace" class="expanded-details-drawer">
-                            <div class="drawer-inner-content">
-                                <h4 class="lang-node" data-en="What We Offer:" data-fr="Ce Que Nous Offrons :">What We Offer:</h4>
-                                <ul class="details-list">
-                                    <li class="lang-node" data-en="A 5-week intensive training" data-fr="Une formation intensive de 5 semaines">A 5-week intensive training</li>
-                                    <li class="lang-node" data-en="Real-life vocabulary in use" data-fr="Vocabulaire pratique en contexte réel">Real-life vocabulary in use</li>
-                                    <li class="lang-node" data-en="Presentations & email writing" data-fr="Présentations & rédaction d'e-mails">Presentations & email writing</li>
-                                    <li class="lang-node" data-en="Access to our alumni network" data-fr="Accès à notre réseau d'alumni">Access to our alumni network</li>
-                                </ul>
-
-                                <div style="padding: 12px 15px; background-color: rgba(0, 31, 63, 0.05); border-radius: 4px; margin-top: 15px;">
-                                    <span style="font-weight: 700; color: #001f3f; font-size: 1.05rem;" class="lang-node" data-en="Investment: 12,500 DZD" data-fr="Investissement : 12 500 DZD">Investment: 12,500 DZD</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-bottom-row"><div class="card-bottom-accent"></div></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 4: INSTITUTIONAL SUCCESS RECORDS -->
-    <section id="success-stories-section">
-        <div style="max-width: 1400px; margin: 0 auto;">
-            <div class="endorsement-block">
-                <p class="quote-text lang-node"
-                   data-en='"Whether you are looking to master professional communication skills or gain fluency for academic purposes, the systematic approach and clear, effective teaching style at W-Elite Pro will guide you toward your goals."'
-                   data-fr='"Que vous cherchiez à maîtriser les compétences de communication professionnelle ou à acquérir une aisance académique, l’approche systématique et le style d’enseignement efficace de W-Elite Pro vous guideront vers vos objectifs."'>
-                    "Whether you are looking to master professional communication skills or gain fluency for academic purposes, the systematic approach and clear, effective teaching style at W-Elite Pro will guide you toward your goals."
-                </p>
-                <p class="quote-author">— Prof. F. Benyelles Bedjaoui</p>
-            </div>
-
-            <div style="margin-top: 60px;">
-                <h2 class="section-main-title lang-node" style="margin-bottom: 40px;" data-en="What Our W-Core Learners Say" data-fr="Ce que disent nos apprenants W-Core">What Our W-Core Learners Say</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
-                    <div class="audio-card-item" style="background: #001f3f; color: white;">
-                        <div>
-                            <span class="audio-card-meta lang-node" style="color: var(--brand-gold);" data-en="Audio Experience" data-fr="Expérience Audio">Audio Experience</span>
-                            <p style="font-size: 0.95rem; color: rgba(255, 255, 255, 0.8); margin-top: 5px;" class="lang-node" data-en="Listen to a graduate share their training journey." data-fr="Écoutez un diplômé partager son parcours de formation.">Listen to a graduate share their training journey.</p>
-                        </div>
-                        <audio id="testimonialAudio1" preload="metadata">
-                            <source src="audio/testimonial.mp3" type="audio/mpeg">
-                        </audio>
-                        <button class="audio-btn" onclick="toggleTestimonialAudio('testimonialAudio1', 'btnIcon1')">
-                            <span id="btnIcon1">▶</span>&nbsp;<span class="lang-node" data-en="Listen" data-fr="Écouter">Listen</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 5: SYSTEM DIALOGUE ACCORDIONS (FAQ) -->
-    <section id="faq-section">
-        <div class="editorial-left-grid">
-            <div class="section-meta-side">
-                <h2 class="section-main-title lang-node" data-en="FAQ" data-fr="FAQ">FAQ</h2>
-            </div>
-            <div class="section-content-side">
-                <div class="faq-wrapper-list">
-                    <div class="faq-accordion-node">
-                        <button class="faq-header-trigger" onclick="toggleFaqNode('faq-1')">
-                            <span class="lang-node" data-en="Who are the teachers at W-Elite Pro?" data-fr="Qui sont les enseignants de W-Elite Pro ?">Who are the teachers at W-Elite Pro?</span>
-                            <span id="faq-1-icon" class="faq-icon-marker">+</span>
-                        </button>
-                        <div id="faq-1" class="faq-content-pane">
-                            <div class="faq-inner-prose lang-node"
-                                 data-en="All our programs are created and taught by qualified university faculty members and TEFL-certified professionals. Our instructors hold advanced degrees, including Master’s degrees and PhDs in English. We bring academic expertise and serious teaching methods to every session, not casual coaching."
-                                 data-fr="Tous nos programmes sont créés et enseignés par des professeurs d'université qualifiés et des professionnels certifiés TEFL. Nos instructeurs détiennent des diplômes avancés, notamment des Masters et des Doctorats en anglais. We bring academic expertise and serious teaching methods to every session, not casual coaching.">
-                                All our programs are created and taught by qualified university faculty members and TEFL-certified professionals. Our instructors hold advanced degrees, including Master’s degrees and PhDs in English. We bring academic expertise and serious teaching methods to every session, not casual coaching.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-accordion-node">
-                        <button class="faq-header-trigger" onclick="toggleFaqNode('faq-2')">
-                            <span class="lang-node" data-en="Why are the classes limited to such small groups?" data-fr="Pourquoi les classes sont-elles limitées à de si petits groupes ?">Why are the classes limited to such small groups?</span>
-                            <span id="faq-2-icon" class="faq-icon-marker">+</span>
-                        </button>
-                        <div id="faq-2" class="faq-content-pane">
-                            <div class="faq-inner-prose lang-node"
-                                 data-en="We keep our classes very small to guarantee the highest quality of education. W-Core is strictly limited to 6 learners, and W-Ultra has only 3 to 8 students per group. This allows our university instructors to check your progress closely, correct your essays, and give you personal feedback."
-                                 data-fr="Nous gardons nos classes très restreintes pour garantir la plus haute qualité d'éducation. W-Core est strictement limité à 6 apprenants, et W-Ultra ne compte que 3 à 8 étudiants par groupe. Cela permet à nos professeurs d'université de suivre de près vos progrès, de corriger vos essais et de vous donner un feedback personnalisé.">
-                                We keep our classes very small to guarantee the highest quality of education. W-Core is strictly limited to 6 learners, and W-Ultra has only 3 to 8 students per group. This allows our university instructors to check your progress closely, correct your essays, and give you personal feedback.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-accordion-node">
-                        <button class="faq-header-trigger" onclick="toggleFaqNode('faq-3')">
-                            <span class="lang-node" data-en="Is there an entry test or selection process?" data-fr="Y a-t-il un test d'entrée ou un processus de sélection ?">Is there an entry test or selection process?</span>
-                            <span id="faq-3-icon" class="faq-icon-marker">+</span>
-                        </button>
-                        <div id="faq-3" class="faq-content-pane">
-                            <div class="faq-inner-prose lang-node"
-                                 data-en="Yes. W-Elite Pro is designed for serious professionals and high-achieving students. To keep our groups focused and high-level, we have a short interview and intake process to check your current English level before you join."
-                                 data-fr="Oui. W-Elite Pro est conçu pour les professionnels sérieux et les étudiants performants. Pour maintenir nos groupes concentrés et de haut niveau, nous organisons un court entretien et un processus d'admission pour vérifier votre niveau d'anglais actuel avant votre inscription.">
-                                Yes. W-Elite Pro is designed for serious professionals and high-achieving students. To keep our groups focused and high-level, we have a short interview and intake process to check your current English level before you join.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 6: INTEGRATED APPLICATION MODULE -->
-    <section id="apply">
-        <div class="editorial-left-grid">
-            <div class="section-meta-side">
-                <span class="section-label lang-node" data-en="Registration" data-fr="Inscription">Registration</span>
-                <h2 class="section-main-title lang-node" data-en="Apply Now" data-fr="Postuler Maintenant">Apply Now</h2>
-            </div>
-            <div class="section-content-side">
-                <div class="form-container">
-                    <form id="applicationForm" onsubmit="handleFormSubmission(event)">
-                        <div class="form-group">
-                            <label class="form-label lang-node" data-en="Full Name" data-fr="Nom Complet">Full Name</label>
-                            <input type="text" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label lang-node" data-en="Email Address" data-fr="Adresse E-mail">Email Address</label>
-                            <input type="email" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label lang-node" data-en="Select Program" data-fr="Choisir un Programme">Select Program</label>
-                            <select class="form-select" required>
-                                <option value="w-core">W-Core (General & Fluency)</option>
-                                <option value="w-ultra">W-Ultra (IELTS Prep)</option>
-                                <option value="w-pace">W-PACE (Professional/Academic)</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label lang-node" data-en="Briefly describe your objectives" data-fr="Décrivez brièvement vos objectifs">Briefly describe your objectives</label>
-                            <textarea class="form-textarea" rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="submit-form-btn lang-node" data-en="Submit Application" data-fr="Envoyer la Demande">Submit Application</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MATRIX FOOTER -->
-    <footer style="padding: 60px 8%; background-color: #001f3f; border-top: 1px solid rgba(255,255,255,0.1); color: white;">
-        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px;">
-            <p style="font-size: 0.85rem; opacity: 0.7;">&copy; 2026 W-Elite Pro. All rights reserved.</p>
-            <a href="mailto:contact@w-elitepro.com" style="font-size: 0.85rem; color: var(--brand-gold); text-decoration: none;">contact@w-elitepro.com</a>
-        </div>
-    </footer>
-
-    <!-- INTERACTIVE FLOATING WHATSAPP LAYER -->
-    <a href="https://wa.me/213555123456" target="_blank" style="position: fixed; bottom: 30px; right: 30px; width: 56px; height: 56px; background: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2000; box-shadow: 0 4px 20px rgba(0,0,0,0.15);" aria-label="Chat via WhatsApp">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width: 30px; height: 30px; fill: white;">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.4 0 12.008 0c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 12.002-11.948 12.002-1.998-.001-3.951-.5-5.688-1.448L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.742.002-2.602-1.005-5.05-2.839-6.89C16.605 2.132 14.162 1.11 11.57 1.111c-5.437 0-9.863 4.37-9.867 9.742-.001 1.705.465 3.369 1.347 4.804l-.369 1.348-.972 3.548 3.644-.954.294-.143zM17.141 14.12c-.3-.15-1.774-.875-2.049-.975-.276-.1-.476-.15-.676.15-.2.3-.775.975-.95 1.174-.175.2-.35.226-.65.075-1.206-.603-2.016-1.062-2.812-2.427-.21-.362.21-.336.604-1.127.065-.13.033-.245-.016-.345-.05-.1-.476-1.149-.652-1.573-.171-.413-.344-.357-.476-.364-.122-.006-.264-.007-.405-.007-.141 0-.371.053-.566.265-.195.212-.746.728-.746 1.777 0 1.048.762 2.062.869 2.208.106.146 1.5 2.293 3.636 3.214.508.219.904.35 1.214.449.51.162.974.139 1.341.084.409-.061 1.774-.726 2.024-1.427.25-.7.25-1.3.175-1.427-.075-.127-.275-.201-.575-.351z"/>
-        </svg>
-    </a>
-
-    <!-- ==========================================
-       11. TRANSLATION DATA INTERFACE SYSTEM
-       ========================================== -->
-    <script>
-        const TYPEWRITER_DATA = {
-            en: ["Professionals", "Academics", "Global Success"],
-            fr: ["Professionnels", "Universitaires", "Succès Global"]
-        };
-
-        let currentLanguage = 'en';
-        let typewriterIndex = 0;
-        let wordIndex = 0;
-        let isDeleting = false;
-        let typewriterTimeout;
-
-        window.addEventListener('DOMContentLoaded', () => {
-            initTypewriter();
-        });
-
-        function changeLanguageSystem(lang) {
-            currentLanguage = lang;
-            
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                if(btn.innerText.toLowerCase() === lang) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-
-            document.querySelectorAll('.lang-node').forEach(node => {
-                const text = node.getAttribute(`data-${lang}`);
-                if (text) {
-                    if (node.tagName === 'INPUT' || node.tagName === 'TEXTAREA') {
-                        node.placeholder = text;
-                    } else {
-                        node.innerHTML = text;
-                    }
-                }
-            });
-
-            // Sync open drawers button text states on flip
-            document.querySelectorAll('.expanded-details-drawer').forEach(drawer => {
-                const btn = drawer.previousElementSibling;
-                if (btn && btn.classList.contains('learn-more-trigger')) {
-                    if (drawer.style.maxHeight && drawer.style.maxHeight !== '0px') {
-                        btn.innerHTML = lang === 'fr' ? "Masquer les détails" : "Hide Details";
-                    } else {
-                        btn.innerHTML = lang === 'fr' ? "Plus de détails" : "More Details";
-                    }
-                }
-            });
-
-            typewriterIndex = 0;
-            wordIndex = 0;
-            isDeleting = false;
-            clearTimeout(typewriterTimeout);
-            runTypewriterLoop();
-        }
-
-        function initTypewriter() {
-            runTypewriterLoop();
-        }
-
-        function runTypewriterLoop() {
-            const currentWords = TYPEWRITER_DATA[currentLanguage];
-            const fullWord = currentWords[typewriterIndex];
-            const targetSpan = document.getElementById("typewriter");
-            
-            if (!targetSpan) return;
-
-            if (isDeleting) {
-                wordIndex--;
-            } else {
-                wordIndex++;
-            }
-
-            targetSpan.innerText = fullWord.substring(0, wordIndex);
-
-            let typeSpeed = 120;
-
-            if (isDeleting) { typeSpeed /= 2; }
-
-            if (!isDeleting && wordIndex === fullWord.length) {
-                typeSpeed = 2000; 
-                isDeleting = true;
-            } else if (isDeleting && wordIndex === 0) {
-                isDeleting = false;
-                typewriterIndex = (typewriterIndex + 1) % currentWords.length;
-                typeSpeed = 500;
-            }
-
-            typewriterTimeout = setTimeout(runTypewriterLoop, typeSpeed);
-        }
-
-        function toggleDetailsDrawer(drawerId) {
-            const drawer = document.getElementById(drawerId);
-            if (!drawer) return;
-            
-            if (drawer.style.maxHeight && drawer.style.maxHeight !== '0px') {
-                drawer.style.maxHeight = '0px';
-            } else {
-                drawer.style.maxHeight = drawer.scrollHeight + "px";
-            }
-            
-            const btn = drawer.previousElementSibling;
-            if (btn && btn.classList.contains('learn-more-trigger')) {
-                if (drawer.style.maxHeight !== '0px') {
-                    btn.innerHTML = currentLanguage === 'fr' ? "Masquer les détails" : "Hide Details";
-                } else {
-                    btn.innerHTML = currentLanguage === 'fr' ? "Plus de détails" : "More Details";
-                }
-            }
-        }
-
-        function toggleFaqNode(nodeId) {
-            const panel = document.getElementById(nodeId);
-            const icon = document.getElementById(nodeId + '-icon');
-            if (!panel) return;
-
-            if (panel.style.maxHeight && panel.style.maxHeight !== '0px') {
-                panel.style.maxHeight = '0px';
-                icon.innerText = '+';
-            } else {
-                document.querySelectorAll('.faq-content-pane').forEach(p => {
-                    p.style.maxHeight = '0px';
-                    const i = document.getElementById(p.id + '-icon');
-                    if (i) i.innerText = '+';
-                });
-                panel.style.maxHeight = panel.scrollHeight + "px";
-                icon.innerText = '−';
-            }
-        }
-
-        function toggleTestimonialAudio(audioId, iconId) {
-            const audio = document.getElementById(audioId);
-            const icon = document.getElementById(iconId);
-            
-            document.querySelectorAll('audio').forEach(a => { if (a !== audio) a.pause(); });
-            document.querySelectorAll('.audio-btn span').forEach(i => { if (i !== icon) i.innerText = "▶"; });
-
-            if (audio.paused) {
-                audio.play().catch(e => console.log(e));
-                icon.innerText = "⏸";
-            } else {
-                audio.pause();
-                icon.innerText = "▶";
-            }
-            audio.onended = () => { icon.innerText = "▶"; };
-        }
-
-        function handleFormSubmission(event) {
-            event.preventDefault();
-            alert(currentLanguage === 'fr' ? "Demande reçue avec succès !" : "Application submitted successfully!");
-            document.getElementById('applicationForm').reset();
-        }
-    </script>
-</body>
-</html>
+            align-items: baseline
