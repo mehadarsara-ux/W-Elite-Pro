@@ -4,13 +4,16 @@
     <style>
         /* 1. ONLY changes the upper navigation bar when at the very top */
         #main-header, header {
-            background-color: #0077B6 !important; 
-        }
+            background-color: rgba(0, 31, 63, 0.80) !important;
+            backdrop-filter: blur(12px) !important;              /* Creates the solid frosted texture */
+        -webkit-backdrop-filter: blur(12px) !important;       /* Supports Safari browsers */
+    }
 
         /* 2. ONLY changes the upper navigation bar when you scroll down */
         #main-header.scrolled, header.scrolled {
-            background-color: #0077B6 !important; 
-        }
+            background-color: rgba(0, 31, 63, 0.92) !important; /* Gets slightly darker as you scroll down */
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
     </style>
 
     <!-- Your existing code continues below this line... -->    
