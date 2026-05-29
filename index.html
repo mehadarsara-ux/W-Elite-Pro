@@ -14,6 +14,24 @@
             background-color: rgba(0, 31, 63, 0.92) !important; /* Gets slightly darker as you scroll down */
         backdrop-filter: blur(12px) !important;
         -webkit-backdrop-filter: blur(12px) !important;
+            /* NEW RULES: Stops the WhatsApp icon from floating and shrinks it */
+    .whatsapp-floating-trigger {
+        position: relative !important; /* Stops it from floating on the screen */
+        bottom: auto !important;       /* Resets its floating position */
+        right: auto !important;        /* Resets its floating position */
+        display: inline-block !important; 
+        
+        width: 32px !important;        /* Makes the icon container smaller */
+        height: 32px !important;       /* Makes the icon container smaller */
+        padding: 5px !important;       /* Shrinks the padding around it */
+        box-shadow: none !important;   /* Removes the heavy floating shadow */
+    }
+
+    /* Shrinks the actual SVG graphic inside the link */
+    .whatsapp-floating-trigger svg {
+        width: 100% !important;
+        height: 100% !important;
+    }
     </style>
 
     <!-- Your existing code continues below this line... -->    
