@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>W-Elite Pro</title>
-    
-    <!-- Premium Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700&family=Playfair+Display:ital,wght=0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    
+    <style>
+        /* 1. ONLY changes the upper navigation bar when at the very top */
+        #main-header, header {
+            background-color: transparent !important; 
+        }
+
+        /* 2. ONLY changes the upper navigation bar when you scroll down */
+        #main-header.scrolled, header.scrolled {
+            background-color: #1a1a1a !important; 
+        }
+    </style>
+
+    <!-- Your existing code continues below this line... -->    
     <style>
         /* ==========================================
            1. CORE VARIABLES & RESET
